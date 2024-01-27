@@ -1,0 +1,4 @@
+"react-alice-carousel":"^2.7.1"
+mui
+tailwind css
+tailwind components ==> store navigation
