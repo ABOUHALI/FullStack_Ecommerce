@@ -1,4 +1,4 @@
-"react-alice-carousel":"^2.7.1"
+npm i react-alice-carousel ==> Basic ==> "react-alice-carousel":"^2.7.1"
+tailwind components ==> store navigation
 mui
 tailwind css
-tailwind components ==> store navigation
