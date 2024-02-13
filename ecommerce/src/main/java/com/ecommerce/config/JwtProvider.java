@@ -1,40 +1,51 @@
 package com.ecommerce.config;
 
-import java.util.Date;
-
-import javax.crypto.SecretKey;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Service;
+
+import javax.crypto.SecretKey;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class JwtProvider {
-    SecretKey key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
+    private String SECRET_KEY = "a578185c1e8b51b4ed9fccf3e627b71a22c6d6202c97c38e4a322335db39e819";
 
-	public String generateToken(Authentication auth) {
-		String jwt = Jwts.builder()
-				.setIssuedAt(new Date())
-				.setExpiration(new Date(new Date().getTime() + 84600000))
-				.claim("email", auth.getName())
-				.signWith(key)
-				.compact();
-		return jwt;
-	}
+    private SecretKey key= Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
-	public String getEmailFromToken(String jwt) {
-		jwt = jwt.substring(7);
+    public String generateToken(Authentication auth) {
 
-		Claims claims = Jwts.parserBuilder()
-				.setSigningKey(key)
-				.build()
-				.parseClaimsJws(jwt)
-				.getBody();
-		String email = String.valueOf(claims.get("email"));
+        String jwt= Jwts.builder()
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(new Date().getTime()+86400000))
+                .claim("email",auth.getName())
+                .signWith(key)
+                .compact();
 
-		return email;
-	}
+        return jwt;
+    }
+
+    public String getEmailFromJwtToken(String jwt) {
+        jwt=jwt.substring(7);
+
+        Claims claims=Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
+
+        return String.valueOf(claims.get("email"));
+    }
+
+    public String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
+        Set<String> auths=new HashSet<>();
+
+        for(GrantedAuthority authority:collection) {
+            auths.add(authority.getAuthority());
+        }
+        return String.join(",",auths);
+    }
+
 }

@@ -9,10 +9,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
 	
 	@Id
@@ -44,21 +48,4 @@ public class Address {
 	@JsonIgnore
 	private User user;
 
-	public Address(Long id, String firstName, String lastName, String streetAddress, String city, String state,
-			String zipCode, User user) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.streetAddress = streetAddress;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-		this.user = user;
-	}
-
-	public Address() {
-		super();
-	}
-	
 }

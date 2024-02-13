@@ -3,36 +3,49 @@ import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Button } from "@mui/material";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-
-const HomeSectionCarousel = () => {
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+const HomeSectionCarousel = ({data,sectionName}) => {
     const [activeIndex,setActiveIndex]=useState(0);
   const responsive = {
     0: { items: 1 },
-    568: { items: 2 },
+    720: { items: 2 },
     1024: { items: 5.5 },
   };
-  const slidePrev=()=>setActiveIndex(activeIndex-1)
-  const slideNext=()=>setActiveIndex(activeIndex+1)
+  const slidePrev=()=>setActiveIndex(activeIndex-1);
+  const slideNext=()=>{
+    console.log(activeIndex)
+    setActiveIndex(activeIndex+1)
+};
 
-  const syncActiveIndex=({item})=>setActiveIndex(item)
+  const syncActiveIndex=({item})=>{
+    console.log("sync");
+    setActiveIndex(item)}
 
-  const items = [1, 1, 1, 1, 1, 1, 1, 1].map((item) => <HomeSectionCard />);
+  const items = data.slice(0,10).map((item) => <HomeSectionCard product={item}/>);
   return (
     <div className="border">
+        <h2 className="text-2xl font-extrabold text-gray-800 py-5">{sectionName}</h2>
       <div className="relative p-5 ">
         <AliceCarousel
           items={items}
-          disableButtonsControls
-          infinite
           responsive={responsive}
           disableDotsControls
+          controlsStrategy="alternate"
+          //onSlideChanged={syncActiveIndex}
           onSlideChanged={syncActiveIndex}
           activeIndex={activeIndex}
         />
-        <Button
+        
+      </div>
+    </div>
+  );
+};
+
+export default HomeSectionCarousel;
+/**{activeIndex !== items.length-5 && <Button
           variant="contained"
           className="z-50 bg-white"
+          onClick={slideNext}
           sx={{
             position: "absolute",
             top: "8rem",
@@ -42,14 +55,17 @@ const HomeSectionCarousel = () => {
           }}
           aria-label="next"
         >
-          <ArrowBackIosNewIcon
+          <KeyboardArrowLeftIcon
             sx={{ transform: "rotate(90deg)", color: "black" }}
           />
+          
         </Button>
-
-        <Button
+        }
+        
+        {activeIndex !== 0 && <Button
           variant="contained"
           className="z-50 bg-white"
+          onClick={slidePrev}
           sx={{
             position: "absolute",
             top: "8rem",
@@ -59,13 +75,7 @@ const HomeSectionCarousel = () => {
           }}
           aria-label="next"
         >
-          <ArrowBackIosNewIcon
+          <KeyboardArrowLeftIcon
             sx={{ transform: "rotate(-90deg)", color: "black" }}
           />
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-export default HomeSectionCarousel;
+        </Button>} */
