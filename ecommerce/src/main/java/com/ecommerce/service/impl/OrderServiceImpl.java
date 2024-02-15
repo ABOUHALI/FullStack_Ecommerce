@@ -4,13 +4,22 @@ import com.ecommerce.exception.OrderException;
 import com.ecommerce.model.Address;
 import com.ecommerce.model.Order;
 import com.ecommerce.model.User;
+import com.ecommerce.repository.OrderRepository;
 import com.ecommerce.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class OrderServiceImpl implements OrderService {
+    @Autowired
+    public OrderRepository orderRepository;
     @Override
     public Order createOrder(User user, Address shippingAddress) {
+        shippingAddress.setUser(user);
+
+        
+
         return null;
     }
 

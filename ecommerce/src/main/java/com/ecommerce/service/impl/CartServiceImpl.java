@@ -1,6 +1,9 @@
 package com.ecommerce.service.impl;
 
+import com.ecommerce.exception.ProductException;
 import com.ecommerce.model.Cart;
+import com.ecommerce.model.CartItem;
+import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.CartRepository;
 import com.ecommerce.request.CartItemRequest;
@@ -28,14 +31,50 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public String addCartItem(Long userId, CartItemRequest cartItemRequest) {
+    public CartItem addCartItem(Long userId, CartItemRequest cartItemRequest) throws ProductException {
+        Cart cart = cartRepository.findCartByUserId(userId);
+        Product product = productService.findProductById(cartItemRequest.getProductId());
+        CartItem cartItem = cartItemService.isCartItemExist(cart,product,cartItemRequest.getSize(),userId);
 
-        
-        return null;
+        if(cartItem== null){
+
+            CartItem cartItem1 = new CartItem();
+            cartItem1.setProduct(product);
+            cartItem1.setCart(cart);
+            cartItem1.setUserId(userId);
+            cartItem1.setQuantity(cartItemRequest.getQuantity());
+            cartItem1.setPrice((int) (cartItemRequest.getQuantity()*product.getDiscountedPrice()));
+            cartItem1.setSize(cartItemRequest.getSize());
+
+            CartItem newCartItem = cartItemService.createCartItem(cartItem1);
+
+            cart.getCartItems().add(cartItem1);
+            return newCartItem;
+
+        }
+
+
+
+        return cartItem;
     }
 
     @Override
     public Cart findUserCart(Long userId) {
-        return null;
+        Cart cart = cartRepository.findCartByUserId(userId);
+        //calculating total price and total item and total discounted price
+        int finalPrice =0;
+        int finalDiscountedPrice=0;
+        int finalItemnbr=0;
+        for (CartItem ci:cart.getCartItems()) {
+            finalPrice+=ci.getPrice();
+            finalDiscountedPrice+=ci.getDiscountedPrice();
+            finalItemnbr+=ci.getQuantity();
+        }
+        cart.setTotalItem(finalItemnbr);
+        cart.setTotalPrice(finalPrice);
+        cart.setTotalDiscountedPrice(finalDiscountedPrice);
+        cart.setDiscount(finalPrice-finalDiscountedPrice);
+
+        return cartRepository.save(cart);
     }
 }
