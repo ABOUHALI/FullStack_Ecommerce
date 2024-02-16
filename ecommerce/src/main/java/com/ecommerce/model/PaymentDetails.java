@@ -1,9 +1,12 @@
 package com.ecommerce.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class PaymentDetails {
-    @Getter
+
     private String paymentMethod;
     private String status;
     private String paymentId;
