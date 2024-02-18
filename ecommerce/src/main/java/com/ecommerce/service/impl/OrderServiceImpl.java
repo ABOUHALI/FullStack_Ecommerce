@@ -2,6 +2,7 @@ package com.ecommerce.service.impl;
 
 import com.ecommerce.exception.OrderException;
 import com.ecommerce.model.*;
+import com.ecommerce.model.enume.PaymentStatus;
 import com.ecommerce.repository.AddressRepository;
 import com.ecommerce.repository.OrderItemRepository;
 import com.ecommerce.repository.OrderRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
@@ -65,6 +68,7 @@ public class OrderServiceImpl implements OrderService {
             order.setOrderDate(LocalDateTime.now());
             order.setCreatedAt(LocalDateTime.now());
             order.setOrderStatus("Pending");
+            order.getPaymentDetails().setStatus(PaymentStatus.PENDING);
 
             Order savedOrder =orderRepository.save(order);
         for (OrderItem orderItem: orderItems) {
@@ -77,26 +81,43 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findOrderById(Long orderId) throws OrderException {
-        return null;
+            Optional<Order> order = orderRepository.findById(orderId);
+            if(order.isPresent()){
+                return order.get();
+            }
+
+            throw new OrderException("Order with id "+orderId+" doesnt exist");
     }
 
     @Override
     public List<Order> findOrdersHistoryByUser(User user) {
-        return null;
+        List<Order> orders = orderRepository.getUsersOrders(user.getId());
+
+
+        return orders;
     }
 
     @Override
     public Order changedStatusOrder(Long orderId, String newStatus) throws OrderException {
-        return null;
+        Order order = findOrderById(orderId);
+        if(newStatus.equals("placed")){
+            order.getPaymentDetails().setStatus(PaymentStatus.COMPLETED);
+        }
+        order.setOrderStatus(newStatus);
+        return order;
     }
 
     @Override
     public List<Order> getAllOrders() {
-        return null;
+        return orderRepository.findAllByOrderByCreatedAtDesc();
     }
 
     @Override
     public void deleteOrder(Long orderId) throws OrderException {
-
+        Optional<Order> ord = Optional.ofNullable(findOrderById(orderId));
+        if(ord.isPresent()){
+        orderRepository.deleteById(orderId);
+    }
+        throw new OrderException("error while deleting the order with "+orderId);
     }
 }

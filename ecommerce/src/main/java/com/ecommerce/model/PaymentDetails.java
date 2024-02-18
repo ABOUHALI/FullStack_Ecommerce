@@ -1,5 +1,6 @@
 package com.ecommerce.model;
 
+import com.ecommerce.model.enume.PaymentStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,19 +9,15 @@ import lombok.Setter;
 public class PaymentDetails {
 
     private String paymentMethod;
-    private String status;
+    private PaymentStatus status;
     private String paymentId;
-    /*
-    private String paymentLinkId;
-    private String paymentLinkReferenceId;
-    private String paymentLinkStatus;
-    private String paymentId​;*/
+
 
     public PaymentDetails(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
-    public PaymentDetails(String paymentMethod, String status, String paymentId) {
+    public PaymentDetails(String paymentMethod, PaymentStatus status, String paymentId) {
         this.paymentMethod = paymentMethod;
         this.status = status;
         this.paymentId = paymentId;
@@ -37,14 +34,6 @@ public class PaymentDetails {
         return paymentMethod;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getPaymentId() {
         return paymentId;
     }
@@ -52,4 +41,12 @@ public class PaymentDetails {
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
+
+    public PaymentStatus getStatus() {
+        return status;
+    }
+    public void setStatus(PaymentStatus status) {
+        this.status = status;
+    }
+
 }
