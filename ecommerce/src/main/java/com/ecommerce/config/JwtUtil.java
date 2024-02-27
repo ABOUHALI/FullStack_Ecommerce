@@ -12,7 +12,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Service
+/*@Service
 public class JwtUtil {
 
     private String SECRET_KEY = "a578185c1e8b51b4ed9fccf3e627b71a22c6d6202c97c38e4a322335db39e819";
@@ -61,4 +61,4 @@ public class JwtUtil {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-}
+}*/

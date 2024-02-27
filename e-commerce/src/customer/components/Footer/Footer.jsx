@@ -89,7 +89,7 @@ const Footer = () => {
 
         <Grid className="pt-20" item xs={12}>
           <Typography variant="body2" component="p" align="center">
-            &copy; 2023 WAGANDI . All rights reserved
+            &copy; 2024 WAGANDI . All rights reserved
           </Typography>
           <Typography variant="body2" component="p" align="center">
               Made by AYMAN ABOUHALI

@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrder(User user, Address shippingAddress) {
             shippingAddress.setUser(user);
             Address address= addressRepository.save(shippingAddress);
-            user.getAddress().add(address);
+            user.getAddresses().add(address);
             userRepository.save(user);
 
             //Cart cartuser = new Cart();

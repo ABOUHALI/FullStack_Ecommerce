@@ -1,8 +1,22 @@
 package com.ecommerce.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class AuthResponse {
 	private String jwt;
 	private String message;
+	@Getter
+	@Setter
+	private boolean status ;
+
+	public AuthResponse(String jwt ,boolean status) {
+		this.jwt=jwt;
+		this.status = status;
+	}
+
+
+
 	public String getJwt() {
 		return jwt;
 	}
