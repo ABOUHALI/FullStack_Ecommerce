@@ -10,7 +10,8 @@ import {
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import { navigation } from "./navig";
-
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import LocalShipping from "@mui/icons-material/LocalShipping";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -217,7 +218,7 @@ export default function Navigation() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
+        <LocalShippingIcon/>Delivery time 1-3 workdays
         </p>
 
         <nav aria-label="Top" className="mx-auto">
