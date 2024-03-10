@@ -38,7 +38,7 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-
+    @PostMapping("/create")
     public HttpEntity<?> addProducts(@RequestBody ProductReq[] products) throws ProductException {
         for (ProductReq product: products) {
             productService.createProduct(product);
