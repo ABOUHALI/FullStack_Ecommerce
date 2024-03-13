@@ -26,7 +26,13 @@ public class OrderAdmController {
 
     @PutMapping("/{orderId}/confirmed")
     public ResponseEntity<?> confirmedOrder(@PathVariable Long orderId) throws OrderException {
-        Order order = orderService.changedStatusOrder(orderId,"CONFIRMED");
+        Order order = orderService.changedStatusOrder(orderId,"confirmed");
+        return ResponseEntity.ok(order);
+    }
+
+    @PutMapping("/{orderId}/ship")
+    public ResponseEntity<?> shippedOrder(@PathVariable Long orderId) throws OrderException {
+        Order order=orderService.changedStatusOrder(orderId,"shipped");
         return ResponseEntity.ok(order);
     }
 
@@ -38,19 +44,19 @@ public class OrderAdmController {
 
     @PutMapping("/{orderId}/delivered")
     public ResponseEntity<?> deliveredOrder(@PathVariable Long orderId) throws OrderException {
-        Order order = orderService.changedStatusOrder(orderId,"DELIVRED");
+        Order order = orderService.changedStatusOrder(orderId,"delivered");
         return ResponseEntity.ok(order);
     }
 
-    @PutMapping("/{orderId}/cancelled")
+    @PutMapping("/{orderId}/cancel")
     public ResponseEntity<?> cancelledOrder(@PathVariable Long orderId) throws OrderException{
-        Order order = orderService.changedStatusOrder(orderId,"CANCELLED");
+        Order order = orderService.changedStatusOrder(orderId,"cancelled");
         return ResponseEntity.ok(order);
     }
 
     @PutMapping("/{orderId}/deleted")
     public ResponseEntity<?> deletedOrder(@PathVariable Long orderId) throws OrderException {
-        Order order = orderService.changedStatusOrder(orderId,"DELETED");
+        Order order = orderService.changedStatusOrder(orderId,"deleted");
         return ResponseEntity.ok(order);
     }
 

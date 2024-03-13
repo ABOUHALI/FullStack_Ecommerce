@@ -34,7 +34,7 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<?> findOrderById(@PathVariable Long orderId ,@RequestHeader("Auhtorization") String jwt) throws UserException, OrderException {
+    public ResponseEntity<?> findOrderById(@PathVariable Long orderId ,@RequestHeader("Authorization") String jwt) throws UserException, OrderException {
         User user=userService.findUserProfileByJwt(jwt);
         Order order=orderService.findOrderById(orderId);
         return ResponseEntity.ok(order);

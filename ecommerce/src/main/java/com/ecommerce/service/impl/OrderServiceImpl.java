@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
             order.setTotalItem(cart.getTotalItem());
             order.setOrderDate(LocalDateTime.now());
             order.setCreatedAt(LocalDateTime.now());
-            order.setOrderStatus("Pending");
+            order.setOrderStatus("pending");
             order.getPaymentDetails().setStatus(PaymentStatus.PENDING);
 
             Order savedOrder =orderRepository.save(order);
