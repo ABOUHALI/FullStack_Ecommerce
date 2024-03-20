@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState,useEffect } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -19,6 +19,8 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useLocation, useNavigate ,useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { findProducts } from "../../../State/Product/Action";
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
   { name: "Price: High to Low", href: "#", current: false },
@@ -32,8 +34,20 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const location=useLocation()
-
   const navigate =useNavigate()
+  const param=useParams();
+  const dispatch=useDispatch();
+
+  const decodedQueryString=decodeURIComponent(location.search);
+  const searchParams=new URLSearchParams(decodedQueryString);
+  const colorValue=searchParams.get("color")
+  const sizeValue=searchParams.get("size");
+  const priceValue=searchParams.get("price");
+  const discount=searchParams.get("discount");
+  const sortValue=searchParams.get("sort");
+  const pageNumber=searchParams.get("page")||1;
+  const stock=searchParams.get("stock");
+
 
 
   const handleFilter = (value, sectionId) => {
@@ -71,6 +85,25 @@ export default function Product() {
     navigate({search :`?${query}`});
   };
 
+
+  useEffect(()=>{
+    const [minPrice,maxPrice]=priceValue===null?[0,1000000]:priceValue.split("-").map(Number);
+    const data={
+      category:param.levelThree,
+      colors:colorValue||[],
+      sizes:sizeValue|[],
+      minPrice,
+      maxPrice,
+      minDiscount:discount||0,
+      sort:sortValue||"price_low",
+      pageNumber:pageNumber-1,
+      pageSize:10,
+      stock:stock
+    }
+    dispatch(findProducts(data))
+  },[param.levelThree,
+  colorValue,sizeValue,priceValue,discount,sortValue,pageNumber,stock
+  ])
 
   return (
     <div className="bg-white">

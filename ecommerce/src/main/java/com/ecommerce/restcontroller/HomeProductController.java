@@ -21,9 +21,9 @@ public class HomeProductController {
 
     @GetMapping("")
     public ResponseEntity<Page<Product>> filterProducts(@RequestParam String category,
-       @RequestParam List<String> colors , @RequestParam List<String> size,@RequestParam Integer minPrice,@RequestParam Integer maxPrice ,
+       @RequestParam List<String> color , @RequestParam List<String> size,@RequestParam Integer minPrice,@RequestParam Integer maxPrice ,
        @RequestParam Integer minDiscount,@RequestParam String sort,@RequestParam String stock,@RequestParam Integer pageNumber,@RequestParam Integer pageSize){
-        Page<Product> filterProducts = productService.getAllProduct(category,colors,size,minPrice,maxPrice,minDiscount,sort,stock,pageNumber,pageSize);
+        Page<Product> filterProducts = productService.getAllProduct(category,color,size,minPrice,maxPrice,minDiscount,sort,stock,pageNumber,pageSize);
         return new ResponseEntity<>(filterProducts, HttpStatus.ACCEPTED);
     }
 
