@@ -23,9 +23,12 @@ public class CartItemController {
     @PutMapping("/{cartItemId}")
     public ResponseEntity<?> updateCartItem(@RequestBody CartItem cartItem,@PathVariable Long cartItemId,@RequestHeader("Authorization") String jwt) throws UserException, CartItemException {
         User user = userService.findUserProfileByJwt(jwt);
+        System.out.println("cartitem "+cartItem.toString());
+        System.out.println("pathvariable "+cartItemId);
+
         CartItem updatedCartItem = cartItemService.updateCartItem(user.getId(),cartItemId,cartItem);
 
-
+        //CartItem updatedCartItem=new CartItem();
         return ResponseEntity.ok(updatedCartItem);
     }
 

@@ -270,6 +270,7 @@ export default function Navigation() {
                     src="https://cdn.dribbble.com/users/29599/screenshots/339239/melon_logo.jpg?resize=400x300&vertical=center"
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
+                    
                   />
                 
               </div>

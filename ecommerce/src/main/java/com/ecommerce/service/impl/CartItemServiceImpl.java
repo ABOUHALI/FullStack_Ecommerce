@@ -39,17 +39,23 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public CartItem updateCartItem(Long userId, Long id, CartItem cartItem) throws CartItemException, UserException {
-        CartItem cartItem1 = findCartItemById(id);
-        User user = userService.findUserById(cartItem1.getUserId());
 
-        if(user.getId().equals(userId)){
-            cartItem1.setQuantity(cartItem.getQuantity());
-            cartItem1.setDiscountedPrice((int) (cartItem.getQuantity()*cartItem.getProduct().getDiscountedPrice()));
-            cartItem1.setPrice((int) (cartItem.getPrice()*cartItem.getProduct().getPrice()));
+        CartItem item=findCartItemById(id);
+        User user=userService.findUserById(item.getUserId());
 
-            return cartItemRepository.save(cartItem1);
-        }else {
-            throw new CartItemException("Got error while updating another users cartItem");
+
+        if(user.getId().equals(userId)) {
+
+            item.setQuantity(cartItem.getQuantity());
+            item.setPrice((int) (item.getQuantity()*item.getProduct().getPrice()));
+            item.setDiscountedPrice((int) (item.getQuantity()*item.getProduct().getDiscountedPrice()));
+
+            return cartItemRepository.save(item);
+
+
+        }
+        else {
+            throw new CartItemException("You can't update  another users cart_item");
         }
 
     }

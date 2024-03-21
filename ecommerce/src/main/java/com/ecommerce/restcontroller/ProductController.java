@@ -3,6 +3,7 @@ package com.ecommerce.restcontroller;
 
 import com.ecommerce.exception.ProductException;
 import com.ecommerce.model.Product;
+import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.request.ProductReq;
 import com.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductRepository productRepository;
 
     @PostMapping("/")
     public ResponseEntity<Product> createProduct(@RequestBody ProductReq product) throws ProductException {
@@ -45,6 +48,12 @@ public class ProductController {
         }
         return ResponseEntity.ok(products);
 
+    }
+
+    @DeleteMapping("/deleteAll")
+    public HttpEntity<?> deleteAll(){
+        productRepository.deleteAll();
+        return ResponseEntity.ok().build();
     }
 
 
