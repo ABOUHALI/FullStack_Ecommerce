@@ -16,6 +16,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthModal from "../../Auth/AuthModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../State/Auth/Action";
+import { getCart } from "../../../State/Cart/Action";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -28,7 +29,7 @@ export default function Navigation() {
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
-  const {auth}=useSelector(store=>store)
+  const {auth,cart}=useSelector(store=>store)
   const dispatch=useDispatch();
   const location=useLocation();
   
@@ -58,6 +59,7 @@ export default function Navigation() {
   useEffect(()=>{
     if(jwt){
       dispatch(getUser(jwt))
+      dispatch(getCart())
     }
     
 },[jwt,auth.jwt])
@@ -476,6 +478,7 @@ export default function Navigation() {
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
+                    onClick={() =>navigate("/cart")}
                     className="group -m-2 flex items-center p-2"
                   >
                     <ShoppingBagIcon
@@ -483,7 +486,7 @@ export default function Navigation() {
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                    2
+                    {cart.cart?.totalItem}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>

@@ -18,7 +18,7 @@ const Cart = () => {
 
     useEffect(()=>{
         dispatch(getCart())
-    },[])
+    },[cart.updatedCartItem,cart.removedCartItem])
 
 
   return (
@@ -34,7 +34,7 @@ const Cart = () => {
                     <hr/>
                     <div className='space-y-3 font-semibold'>
                         <div className='flex justify-between pt-3 text-black'>
-                            <span>Price(4 items)</span>
+                            <span>Price({cart.cart?.totalItem} items)</span>
                             <span>$ {cart.cart?.totalPrice}</span>
                         </div>
 

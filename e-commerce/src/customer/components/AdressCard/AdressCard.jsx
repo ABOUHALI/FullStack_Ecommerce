@@ -1,17 +1,21 @@
 import React from 'react'
 
-const AdressCard = () => {
+const AdressCard = ({address}) => {
+  //console.log(address)
   return (
     <div>
-        <div className='space-y-3'>
-            <p className='font-semibold'>Ayman ABOUHALI</p>
-            <p>Aachen , Peliserkerstraße 68</p>
-            <p>52068</p>
-            <div className='space-y-1'>
-                <p className='font-semibold'>Phone Number</p>
-                <p>0176 206 755 39</p>
-            </div>
+        <div className="space-y-3">
+        <p className="font-semibold">{`${address?.firstName} ${address?.lastName}`}</p>
+
+        <p>
+          {`${address?.streetAddress} ${address?.city} ${address?.state} ${address?.zipCode}`}
+        </p>
+
+        <div className="space-y-1">
+          <p className="font-semibold">Phone Number</p>
+          <p>{address?.mobile}</p>
         </div>
+      </div>
     </div>
   )
 }

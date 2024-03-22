@@ -31,7 +31,8 @@ export const updateCartItem=(reqData)=>async (dispatch)=>{
                 console.log("updateCartItem",reqData.data)
 
         const {data}=await api.put(`api/cartItem/${reqData.cartItemId}`,reqData.data)
-        dispatch({type:UPDATE_CART_ITEM_SUCCESS,payload:data})
+        dispatch({type:UPDATE_CART_ITEM_SUCCESS,payload:reqData.cartItemId})
+        //dispatch(getCart())
     } catch (error) {
         dispatch({type:UPDATE_CART_ITEM_FAILURE,payload:error.message})
     } 

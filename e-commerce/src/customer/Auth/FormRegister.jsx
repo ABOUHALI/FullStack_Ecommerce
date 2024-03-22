@@ -73,6 +73,7 @@ const FormRegister = () => {
                         id='password'
                         name='password'
                         label='Password'
+                        type='password'
                         fullWidth
                         autoComplete='password'
                       />
