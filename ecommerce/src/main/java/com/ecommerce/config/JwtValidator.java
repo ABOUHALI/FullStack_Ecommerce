@@ -42,8 +42,9 @@ public class JwtValidator extends OncePerRequestFilter {
                 Claims claims=Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 
                 String email=String.valueOf(claims.get("email"));
-
+                System.out.println("jwtvalidator"+email);
                 String authorities=String.valueOf(claims.get("authorities"));
+                System.out.println("authorities"+authorities);
 
                 List<GrantedAuthority> auths=AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
                 Authentication athentication=new UsernamePasswordAuthenticationToken(email,null, auths);

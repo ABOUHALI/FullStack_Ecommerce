@@ -5,6 +5,7 @@ import CartItem from '../Cart/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom'
 import { getOrderById } from '../../../State/Order/Action'
+import { createPayment } from '../../../State/Payment/Action'
 
 const OrderSummary = () => {
     const dispatch=useDispatch();
@@ -16,6 +17,11 @@ const OrderSummary = () => {
     useEffect(()=>{
         dispatch(getOrderById(orderId))
     },[orderId])
+
+    const handleCheckout=(()=>{
+        console.log("handlechekout",orderId)
+        dispatch(createPayment(orderId))
+    })
   return (
     <div>
         <div className='p-5 shadow-lg rounded-s-md border'>
@@ -56,7 +62,9 @@ const OrderSummary = () => {
                     </div>
                     
                     <Button type='submit' variant='contained' className='w-full mt-5'
-                        sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}>
+                        sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}
+                        onClick={handleCheckout}
+                        >
                         Check out
                     </Button>
 

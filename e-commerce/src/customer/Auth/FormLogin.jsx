@@ -7,7 +7,12 @@ import { getUser, login } from '../../State/Auth/Action'
 const FormLogin = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
-
+  const jwt =localStorage.getItem("jwt")
+  useEffect(()=>{
+    if(jwt){
+      dispatch(getUser(jwt))
+    }
+  },[jwt])
 
   
 

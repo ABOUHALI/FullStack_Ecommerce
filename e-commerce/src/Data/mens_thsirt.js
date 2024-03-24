@@ -22,9 +22,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"ORIGINAL - T-Shirt basic"
   },
   {
@@ -50,9 +50,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"SIMPLE DOME TE SUMMIT - T-Shirt print"
   },
   {
@@ -78,9 +78,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"ALFRED -Poloshirt"
   },
   {
@@ -106,9 +106,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"basic T-Shirt"
   },
   {
@@ -134,9 +134,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"T-Shrit basic"
   },
   {
@@ -162,9 +162,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"T-Shirt print."
   },
   {
@@ -190,9 +190,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"T-Shirt print"
   },
   {
@@ -218,9 +218,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":"T-Shirt print."
   },
   {
@@ -246,9 +246,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":""
   },
   {
@@ -274,9 +274,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":""
   },
   {
@@ -302,9 +302,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":""
   },
   {
@@ -330,9 +330,9 @@ export const mens_tshirt=[
           }
         ],
         "quantity": 100,
-        "topLavelCategory": "Men",
-        "secondLavelCategory": "Clothing",
-        "thirdLavelCategory": "mens_tshirt",
+        "topLevelCategory": "Men",
+        "secondLevelCategory": "Clothing",
+        "thirdLevelCategory": "mens_tshirt",
         "description":""
   }
 ]
