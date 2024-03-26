@@ -31,10 +31,8 @@ public class JwtValidator extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String jwt = request.getHeader(JwtProvider.JWT_HEADER);
-        System.out.println("jwt ------ "+jwt);
         if(jwt!=null) {
             jwt=jwt.substring(7);
-            System.out.println("jwt ------ "+jwt);
             try {
 
                 SecretKey key= Keys.hmacShaKeyFor(JwtProvider.SECRET_KEY.getBytes());
@@ -42,9 +40,7 @@ public class JwtValidator extends OncePerRequestFilter {
                 Claims claims=Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 
                 String email=String.valueOf(claims.get("email"));
-                System.out.println("jwtvalidator"+email);
                 String authorities=String.valueOf(claims.get("authorities"));
-                System.out.println("authorities"+authorities);
 
                 List<GrantedAuthority> auths=AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
                 Authentication athentication=new UsernamePasswordAuthenticationToken(email,null, auths);

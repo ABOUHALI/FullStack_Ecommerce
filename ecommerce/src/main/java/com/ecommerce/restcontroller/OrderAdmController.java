@@ -56,8 +56,8 @@ public class OrderAdmController {
 
     @PutMapping("/{orderId}/deleted")
     public ResponseEntity<?> deletedOrder(@PathVariable Long orderId) throws OrderException {
-        Order order = orderService.changedStatusOrder(orderId,"deleted");
-        return ResponseEntity.ok(order);
+        orderService.deleteOrder(orderId);
+        return ResponseEntity.ok("order deleted successfully");
     }
 
 }

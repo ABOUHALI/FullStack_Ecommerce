@@ -9,22 +9,21 @@ import OrderTraker from '../Order/OrderTraker'
 import AdressCard from '../AdressCard/AdressCard'
 
 const PaymentSuccess = () => {
-    const [paymentId,setPaymentId]=useState()
-    const [referencedId,setReferencedId]=useState()
-    const [paymentStatus,setPaymentStatus]=useState()
+    const [paymentId,setPaymentId]=useState('')
+  
     const {orderId}=useParams()
     const dispatch=useDispatch();
-    const {order}=useSelector(store=>store)
-    console.log("orderId",orderId)
+    const {order,payment}=useSelector(store=>store)
+    //const {paymentlinkid}=useSelector(state=>state.paymentReducer)
+    const urlParam=new URLSearchParams(window.location.search);
+    useEffect(()=>{
+        const urlParam=new URLSearchParams(window.location.search);
+        //setPaymentId(urlParam.get("payment_link_id"))
+        
+    },[orderId])
 
     useEffect(()=>{
-         const urlParam=new URLSearchParams(window.location.search);
-        setPaymentId(urlParam.get("payment_url"))
-        setPaymentStatus(urlParam.get(""))
-    },[])
-    console.log(order.order)
-
-    useEffect(()=>{
+        setPaymentId(payment.payment?.payment_link_id)
         const data={orderId,paymentId}
         dispatch(getOrderById(orderId))
         dispatch(updatePayment(data))
@@ -39,25 +38,25 @@ const PaymentSuccess = () => {
 
             </Alert>
             <OrderTraker activeStep={1}/>
-            {[1,2,2].map((item)=><Grid container className='space-y-5 py-5 pt-20'>
+            {order.order?.orderItems.map((item)=><Grid container className='space-y-5 py-5 pt-20'>
                     <Grid container item sx={{alignItems:"center",justifyContent:"space-between"}} className='shadow-xl rounded-md p-5 '>
                         <Grid item xs={6}>
                             <div className='flex items-center'>
                                 <img className='w-[5rem] h-[5rem] object-cover object-top ' src='https://www.creativefabrica.com/wp-content/uploads/2019/06/Watermelon-fruit-fresh-logo-vector-by-DEEMKA-STUDIO.jpg' alt=''/>
                                 <div>
-                                    <p>item.product.title</p>
+                                    <p>{item.product.title}</p>
                                     <div className='opacity-50 text-xs font-semibold space-x-5'>
-                                        <span>Color: item.color</span>
-                                        <span>Size: item.size</span>
+                                        <span>Color: {item.color}</span>
+                                        <span>Size: {item.size}</span>
                                     </div>
-                                    <p>Seller:item.product.brand</p>
-                                    <p>$ item.price</p>
+                                    <p>Seller:{item.product.brand}</p>
+                                    <p>$ {item.price}</p>
                                 </div>
                             
                             </div>
                         </Grid>
                         <Grid item>
-                            <AdressCard address={''}/>
+                            <AdressCard address={order.order?.shippingAddress}/>
                         </Grid>
                     </Grid>
             </Grid>)}

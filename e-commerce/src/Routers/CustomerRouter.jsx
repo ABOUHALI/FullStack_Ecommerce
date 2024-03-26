@@ -26,7 +26,7 @@ const CustomerRouter = () => {
             <Route path='/checkout' element={<Checkout/>}></Route>
             <Route path='/account/order' element={<Order/>}></Route>
             <Route path='/account/order/:orderId' element={<OrderDetails/>}></Route>
-            <Route path='/payment/success/:id' element={<PaymentSuccess/>}></Route>
+            <Route path='/payment/success/:orderId' element={<PaymentSuccess/>}></Route>
 
 
 

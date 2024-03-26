@@ -46,16 +46,15 @@ public class PaymentController {
         System.out.println("createpaymentlink");
         Order order=orderService.findOrderById(orderId);
         PaymentResponse res = paymentService.createPaymentLink(order);
-        System.out.println(res.toString());
-
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        
+        return new ResponseEntity<PaymentResponse>(res, HttpStatus.OK);
 
 //		order_id
     }
 
     @GetMapping("/payments")
 
-    public ResponseEntity<?> redirect(@RequestParam(name="payment_id")String paymentId,@RequestParam(name="order_id")Long orderId) throws OrderException {
+    public ResponseEntity<?> redirect(@RequestParam(name="payment_link_id")String paymentId,@RequestParam(name="order_id")Long orderId) throws OrderException {
         Stripe.apiKey = stripeSecretKey; // Your Stripe Secret Key
 
         Order order = orderService.findOrderById(orderId);
@@ -75,16 +74,17 @@ public class PaymentController {
                 return ResponseEntity.ok("Your order has been placed.");
             } else {
                 // Handle failed payment
+
                 // You may want to redirect the user to a failure page or take appropriate action
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (StripeException e) {
             // Handle Stripe-related exceptions
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error stripe: " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             // Handle other exceptions
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error exception: " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -73,8 +73,7 @@ public class CartItemServiceImpl implements CartItemService {
         User userCartItem=userService.findUserById(cartItem.getUserId());
 
         User connectedUser = userService.findUserById(userId);
-        System.out.println("realUser "+connectedUser.getId());
-        System.out.println("User Cart "+userCartItem.getId());
+
 
         if(connectedUser.getId().equals(userCartItem.getId())){
             cartItemRepository.deleteById(cartItem.getId());
