@@ -19,10 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000)")
 @RequestMapping("/api")
 public class PaymentController {
-
-
 
     @Autowired
     private OrderService orderService;
@@ -40,16 +39,13 @@ public class PaymentController {
 
 
     @PostMapping("/payments/{orderId}")
-    public ResponseEntity<PaymentResponse> createPaymentLink(@PathVariable Long orderId,
-                                                             @RequestHeader("Authorization")String jwt)
+    public ResponseEntity<PaymentResponse> createPaymentLink(@PathVariable Long orderId)
             throws StripeException, UserException, OrderException {
         System.out.println("createpaymentlink");
         Order order=orderService.findOrderById(orderId);
         PaymentResponse res = paymentService.createPaymentLink(order);
         
         return new ResponseEntity<PaymentResponse>(res, HttpStatus.OK);
-
-//		order_id
     }
 
     @GetMapping("/payments")

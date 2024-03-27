@@ -24,12 +24,24 @@ export const  updatePayment=(reqData)=>async(dispatch)=>{
     console.log("updatedOayment",reqData)
     dispatch({type:UPDATE_PAYMENT_REQUEST})
     try {
-        const {data}=await api.get(`/api/payments?payment_link_id=${reqData.payment_link_id}&order_id=${reqData.orderId}`,reqData);
+        const {data} = await api.get(`/api/payments?payment_link_id=${reqData.payment_link_id}&order_id=${reqData.orderId}`,reqData);
         console.log("update_payment",data)
         dispatch({type:UPDATE_PAYMENT_SUCCESS,payload:data})
     } catch (error) {
         dispatch({type:UPDATE_PAYMENT_FAILURE
-            ,payload:error.message})
-        
+            ,payload:error.message})       
+    }
+}
+
+export const updatePaymentV1 =(reqData)=>async(dispatch)=>{
+    console.log("updatedV1Payment",reqData)
+    dispatch({type:UPDATE_PAYMENT_REQUEST})
+    try {
+        const {data} = await api.post('/api/payments/' + reqData.orderId);
+        //console.log("update_payment",data);
+        dispatch({type:UPDATE_PAYMENT_SUCCESS, payload:data})
+    } catch (error) {
+        dispatch({type:UPDATE_PAYMENT_FAILURE
+            ,payload:error.message})      
     }
 }

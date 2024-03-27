@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { store } from '../../../State/store'
 import { getOrderById } from '../../../State/Order/Action'
-import { updatePayment } from '../../../State/Payment/Action'
+import { updatePayment, updatePaymentV1 } from '../../../State/Payment/Action'
 import { Alert, AlertTitle, Grid } from '@mui/material'
 import OrderTraker from '../Order/OrderTraker'
 import AdressCard from '../AdressCard/AdressCard'
+import { api } from '../../../config/apiConfig'
+
 
 const PaymentSuccess = () => {
-    const [paymentId,setPaymentId]=useState('')
-  
-    const {orderId}=useParams()
+    const [paymentId,setPaymentId] = useState('');
+    const jwt = localStorage.getItem("jwt");
+    
+    function getPaymentID(){
+        
+        const {data} = api.post('/api/payments/' + orderId);
+        console.log(data.payment_link_id);
+
+    }
+
+    const {orderId}=useParams();
     const dispatch=useDispatch();
     const {order,payment}=useSelector(store=>store)
     //const {paymentlinkid}=useSelector(state=>state.paymentReducer)
@@ -23,12 +34,14 @@ const PaymentSuccess = () => {
     },[orderId])
 
     useEffect(()=>{
-        setPaymentId(payment.payment?.payment_link_id)
-        const data={orderId,paymentId}
-        dispatch(getOrderById(orderId))
-        dispatch(updatePayment(data))
-      
+        setPaymentId(payment.payment?.payment_link_id);
+        const data={orderId,paymentId};
+        dispatch(getOrderById(orderId));
+        dispatch(updatePaymentV1(data));      
+        getPaymentID();
+
     },[orderId,paymentId])
+
   return (
     <div className='px-2 lg:px-36'>
         <div className='flex flex-col justify-center items-center'>
@@ -67,4 +80,4 @@ const PaymentSuccess = () => {
   )
 }
 
-export default PaymentSuccess
+export default PaymentSuccess;
