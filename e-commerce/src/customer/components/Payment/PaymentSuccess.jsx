@@ -7,28 +7,45 @@ import { updatePayment } from '../../../State/Payment/Action'
 import { Alert, AlertTitle, Grid } from '@mui/material'
 import OrderTraker from '../Order/OrderTraker'
 import AdressCard from '../AdressCard/AdressCard'
+import { api } from '../../../config/apiConfig'
 
 const PaymentSuccess = () => {
     const [paymentId,setPaymentId]=useState('')
-  
+    async function getPaymentId() {
+        try {
+            const response = await api.post('api/payments/' + orderId);
+            const data = response.data;
+            const paymentLinkId = data.payment_link_id;
+            console.log(paymentLinkId);
+            return paymentLinkId;
+        } catch (error) {
+            console.error('Error fetching payment ID:', error);
+            throw error; // Propagate the error to the caller if needed
+        }
+    }
+    
+
     const {orderId}=useParams()
     const dispatch=useDispatch();
     const {order,payment}=useSelector(store=>store)
     //const {paymentlinkid}=useSelector(state=>state.paymentReducer)
-    const urlParam=new URLSearchParams(window.location.search);
-    useEffect(()=>{
-        const urlParam=new URLSearchParams(window.location.search);
-        //setPaymentId(urlParam.get("payment_link_id"))
-        
-    },[orderId])
+    
 
-    useEffect(()=>{
-        setPaymentId(payment.payment?.payment_link_id)
-        const data={orderId,paymentId}
-        dispatch(getOrderById(orderId))
-        dispatch(updatePayment(data))
-      
-    },[orderId,paymentId])
+    useEffect(() => {
+        const fetchPaymentIdAndUpdate = async () => {
+            try {
+                const payment_link_id = await getPaymentId(); // Await the result of getPaymentId
+                const data = { orderId, payment_link_id };
+                dispatch(getOrderById(orderId));
+                dispatch(updatePayment(data));
+            } catch (error) {
+                console.error('Error:', error);
+                // Handle error if needed
+            }
+        };
+
+        fetchPaymentIdAndUpdate(); // Call the async function inside useEffect
+    }, [orderId, dispatch]);
   return (
     <div className='px-2 lg:px-36'>
         <div className='flex flex-col justify-center items-center'>
