@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { CONFIRMED_ORDER_FAILURE } from "../../State/Admin/Order/ActionType";
 
-const OrdersTable = () => {
+const OrderTableView = () => {
   const dispatch = useDispatch();
   const { adminOrder } = useSelector((store) => store);
   const [anchorEl, setAnchorEl] = useState([]);
@@ -60,7 +60,7 @@ const OrdersTable = () => {
   return (
     <div className="p-10">
       <Card className="mt-2 bg-gray">
-        <CardHeader title="All Orders" />
+        <CardHeader title="Recent Orders" />
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -70,12 +70,11 @@ const OrdersTable = () => {
                 <TableCell align="left">Id</TableCell>
                 <TableCell align="left">Price</TableCell>
                 <TableCell align="left">Status</TableCell>
-                <TableCell align="left">Update</TableCell>
-                <TableCell align="left">Delete</TableCell>
+       
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminOrder?.orders?.map((item, index) => (
+              {adminOrder?.orders?.slice(0,5).map((item, index) => (
                 <TableRow
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -101,37 +100,8 @@ const OrdersTable = () => {
                     item.orderStatus==="pending"?"bg-[gray]":
                     "bg-[#E8290B]"}`}>{item.orderStatus}</span></TableCell>
 
-                  <TableCell align="left">
-                  <Button
-                        id={`basic-button-${item.id}`}
-                        aria-controls={`basic-menu-${item.id}`}
-                        aria-haspopup="true"
-                        aria-expanded={Boolean(anchorEl[index])}
-                        onClick={(event) =>
-                          handleClick(event, index)
-                        }
-                      >
-                      STATUS
-                    </Button>
-                    <Menu
-                      id= {`basic-menu-${item.id}`}
-                      anchorEl={anchorEl[index]}
-                      open={Boolean(anchorEl[index])}
-                      onClose={()=>handleClose(index)}
-                      MenuListProps={{
-                        "aria-labelledby": `basic-button-${item.id}`,
-                      }}
-                    >
-                      <MenuItem onClick={()=>handleConfirmedOrder(item.id,index)}>CONFIRMED</MenuItem>
-                      <MenuItem onClick={()=>handleShippedOrder(item.id,index)}>SHIPPED</MenuItem>
-                      <MenuItem onClick={()=>handleDeliveredOrder(item.id,index)}>DELIVERED</MenuItem>
-                    </Menu>
-                  </TableCell>
-                  <TableCell align="left">
-                    <Button onClick={()=>handleDeletedOrder(item.id)} variant="outlined"
-                    
-                    >Delete</Button>
-                  </TableCell>
+                  
+                  
                 </TableRow>
               ))}
             </TableBody>
@@ -142,4 +112,4 @@ const OrdersTable = () => {
   );
 };
 
-export default OrdersTable;
+export default OrderTableView;

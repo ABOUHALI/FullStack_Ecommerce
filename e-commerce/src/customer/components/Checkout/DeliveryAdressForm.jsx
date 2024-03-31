@@ -35,7 +35,9 @@ export default function AddDeliveryAddressForm() {
   };
 
   const handleCreateOrder = (item) => {
-    dispatch(createOrder({address:item, navigate }));
+    const newData={...item};
+    delete newData.id;
+    dispatch(createOrder({address:newData, navigate }));
   };
 
   return (
@@ -43,6 +45,7 @@ export default function AddDeliveryAddressForm() {
       <Grid item xs={12} lg={5}>
         <Box className="border rounded-md shadow-md h-[30.5rem] overflow-y-scroll ">
           {auth.user?.addresses.map((item) => (
+            
             <div
               onClick={() => setSelectedAdress(item)}
               className="p-5 py-7 border-b cursor-pointer"

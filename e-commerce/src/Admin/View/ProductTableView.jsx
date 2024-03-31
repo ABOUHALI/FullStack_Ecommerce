@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteProduct, findProducts } from '../../State/Product/Action';
 
-const ProductTable = () => {
+const ProductTableView = () => {
     const dispatch=useDispatch();
     const {products}=useSelector(store=>store);
     console.log(products)
@@ -23,14 +23,11 @@ const ProductTable = () => {
           dispatch(findProducts(data))
     },[products.deletedProduct])
 
-    const handleDeleteProduct=(productId)=>{
-        console.log("delete product ",productId)
-        dispatch(deleteProduct(productId))
-      }
+    
   return (
     <div className='p-5'>
          <Card className='mt-2 bg-gray' >
-            <CardHeader title='All Products'/>
+            <CardHeader title='Recent Products'/>
          <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -41,11 +38,10 @@ const ProductTable = () => {
             <TableCell align="left">Price</TableCell>
             <TableCell align="left">Quantity</TableCell>
 
-            <TableCell align="left">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {products?.products?.content?.map((item) => (
+          {products?.products?.content?.slice(0,5).map((item) => (
             <TableRow
               key={item.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -60,11 +56,7 @@ const ProductTable = () => {
               <TableCell align="left">{item.category.name}</TableCell>
               <TableCell align="left">{item.price}</TableCell>
               <TableCell align="left">{item.quantity}</TableCell>  
-              <TableCell align="left">
-                    <Button onClick={()=>handleDeleteProduct(item.id)} variant='outlined'>
-                        Delete
-                    </Button>
-                </TableCell>  
+                
 
             </TableRow>
           ))}
@@ -79,4 +71,4 @@ const ProductTable = () => {
   )
 }
 
-export default ProductTable
+export default ProductTableView

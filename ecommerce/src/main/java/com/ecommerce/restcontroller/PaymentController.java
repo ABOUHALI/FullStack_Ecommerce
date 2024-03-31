@@ -59,12 +59,12 @@ public class PaymentController {
 
         Order order = orderService.findOrderById(orderId);
 
-        try {
+
             // Retrieve payment details from Stripe
-            PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentId);
+            //PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentId);
 
             // Check if payment is successful
-            if (paymentIntent.getStatus().equals("succeeded")) {
+
                 order.getPaymentDetails().setPaymentId(paymentId);
                 order.getPaymentDetails().setStatus(PaymentStatus.COMPLETED);
                 order.setOrderStatus("placed");
@@ -72,22 +72,10 @@ public class PaymentController {
 
 
                 return ResponseEntity.ok("Your order has been placed.");
-            } else {
-                // Handle failed payment
 
-                // You may want to redirect the user to a failure page or take appropriate action
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
-        } catch (StripeException e) {
-            // Handle Stripe-related exceptions
-            System.out.println("Error stripe: " + e.getMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (Exception e) {
-            // Handle other exceptions
-            System.out.println("Error exception: " + e.getMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
+
+
+}
 
 }

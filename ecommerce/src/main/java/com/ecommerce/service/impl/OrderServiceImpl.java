@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.lang.Exception;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -33,6 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(User user, Address shippingAddress) {
+            System.out.println("createorder"+shippingAddress.toString());
             shippingAddress.setUser(user);
             Address address= addressRepository.save(shippingAddress);
             user.getAddresses().add(address);
@@ -104,7 +106,8 @@ public class OrderServiceImpl implements OrderService {
             order.getPaymentDetails().setStatus(PaymentStatus.COMPLETED);
         }
         order.setOrderStatus(newStatus);
-        return order;
+
+        return orderRepository.save(order);
     }
 
     @Override
@@ -113,11 +116,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(Long orderId) throws OrderException {
+    public void deleteOrder(Long orderId) throws Exception {
         Optional<Order> ord = Optional.ofNullable(findOrderById(orderId));
         if(ord.isPresent()){
         orderRepository.deleteById(orderId);
-    }
-        throw new OrderException("error while deleting the order with "+orderId);
-    }
+    }else {
+        throw new Exception("bestellung nicht gefunden");
+    }}
 }

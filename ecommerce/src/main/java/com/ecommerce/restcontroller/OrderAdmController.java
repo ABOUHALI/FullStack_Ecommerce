@@ -27,12 +27,14 @@ public class OrderAdmController {
     @PutMapping("/{orderId}/confirmed")
     public ResponseEntity<?> confirmedOrder(@PathVariable Long orderId) throws OrderException {
         Order order = orderService.changedStatusOrder(orderId,"confirmed");
+        System.out.println(order.getOrderStatus());
         return ResponseEntity.ok(order);
     }
 
     @PutMapping("/{orderId}/ship")
     public ResponseEntity<?> shippedOrder(@PathVariable Long orderId) throws OrderException {
         Order order=orderService.changedStatusOrder(orderId,"shipped");
+        System.out.println(order.getOrderStatus());
         return ResponseEntity.ok(order);
     }
 
@@ -54,8 +56,8 @@ public class OrderAdmController {
         return ResponseEntity.ok(order);
     }
 
-    @PutMapping("/{orderId}/deleted")
-    public ResponseEntity<?> deletedOrder(@PathVariable Long orderId) throws OrderException {
+    @DeleteMapping ("/{orderId}/deleted")
+    public ResponseEntity<?> deletedOrder(@PathVariable Long orderId) throws Exception {
         orderService.deleteOrder(orderId);
         return ResponseEntity.ok("order deleted successfully");
     }
