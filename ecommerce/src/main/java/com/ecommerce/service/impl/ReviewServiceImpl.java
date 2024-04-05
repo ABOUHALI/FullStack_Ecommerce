@@ -6,6 +6,7 @@ import com.ecommerce.model.Review;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.repository.ReviewRepository;
+import com.ecommerce.request.ReviewRequest;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public Review createReview(Review review, User user) throws ProductException {
-        Product product=productService.findProductById(review.getProduct().getId());
+    public Review createReview(ReviewRequest review, User user) throws ProductException {
+        System.out.println("review"+review.toString());
+        Product product=productService.findProductById(review.getProductId());
         Review r = new Review();
         r.setUser(user);
         r.setProduct(product);
@@ -34,7 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
         r.setCreatedAt(LocalDateTime.now());
 
         productRepository.save(product);
-        return reviewRepository.save(review);
+        return reviewRepository.save(r);
     }
 
     @Override

@@ -59,7 +59,7 @@ const PaymentSuccess = () => {
                     <Grid container item sx={{alignItems:"center",justifyContent:"space-between"}} className='shadow-xl rounded-md p-5 '>
                         <Grid item xs={6}>
                             <div className='flex items-center'>
-                                <img className='w-[5rem] h-[5rem] object-cover object-top ' src='https://www.creativefabrica.com/wp-content/uploads/2019/06/Watermelon-fruit-fresh-logo-vector-by-DEEMKA-STUDIO.jpg' alt=''/>
+                                <img className='w-[5rem] h-[5rem] object-cover object-top ' src={item.product.imageUrl} alt=''/>
                                 <div>
                                     <p>{item.product.title}</p>
                                     <div className='opacity-50 text-xs font-semibold space-x-5'>

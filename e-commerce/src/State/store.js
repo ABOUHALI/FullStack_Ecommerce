@@ -7,6 +7,7 @@ import { orderReducer } from "./Order/Reducer";
 import { paymentReducer } from "./Payment/Reducer";
 import {adminOrderReducer} from "./Admin/Order/Reducer";
 import adminCustomerReducer from "./Admin/Customer/Reducer";
+import ReviewReducer from "./Review/Reducer";
 
 const rootReducers=combineReducers({
         auth:authReducer,
@@ -14,6 +15,7 @@ const rootReducers=combineReducers({
         cart:cartReducer,
         order:orderReducer,
         payment:paymentReducer,
+        review:ReviewReducer,
 
 
 

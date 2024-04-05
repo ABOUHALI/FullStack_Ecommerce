@@ -62,7 +62,7 @@ export default function Navigation() {
       dispatch(getCart())
     }
     
-},[jwt,auth.jwt])
+},[jwt,auth.jwt,dispatch])
 
 
   useEffect(()=>{

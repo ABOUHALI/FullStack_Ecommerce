@@ -10,6 +10,7 @@ import Checkout from '../customer/components/Checkout/Checkout'
 import Order from '../customer/components/Order/Order'
 import OrderDetails from '../customer/components/Order/OrderDetails'
 import PaymentSuccess from '../customer/components/Payment/PaymentSuccess'
+import RateProduct from '../customer/components/RatingProducts/RateProduct'
 const CustomerRouter = () => {
   return (
     <div>
@@ -20,14 +21,15 @@ const CustomerRouter = () => {
             <Route path='/login' element={<HomePage/>}></Route>
             <Route path='/register' element={<HomePage/>}></Route>
             <Route path='/' element={<HomePage/>}></Route>
+            <Route path='/home' element={<HomePage/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
             <Route path='/:lvlOne/:lvlTwo/:levelThree' element={<Product/>}></Route>
-            <Route path='/:product/:productId' element={<ProductDetails/>}></Route>
+            <Route path='/product/:productId' element={<ProductDetails/>}></Route>
             <Route path='/checkout' element={<Checkout/>}></Route>
             <Route path='/account/order' element={<Order/>}></Route>
             <Route path='/account/order/:orderId' element={<OrderDetails/>}></Route>
             <Route path='/payment/success/:orderId' element={<PaymentSuccess/>}></Route>
-
+            <Route path='/account/rate/:product' element={<RateProduct/>}></Route>
 
 
 

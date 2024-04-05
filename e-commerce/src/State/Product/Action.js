@@ -30,9 +30,9 @@ export const findProductById=(reqData)=>async (dispatch)=>{
     const {productId}=reqData;
     try {
         const {data}=await api.get(`api/home/products/${productId}`)
-        console.log("data",data)
         dispatch({type:FIND_PRODUCT_BY_ID_SUCCESS,payload:data})
-    
+        console.log("data",data)
+
     } catch (error) {
         dispatch({type:FIND_PRODUCT_BY_ID_FAILURE,payload:error.message})
 

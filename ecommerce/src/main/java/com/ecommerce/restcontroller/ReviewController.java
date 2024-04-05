@@ -4,6 +4,7 @@ import com.ecommerce.exception.ProductException;
 import com.ecommerce.exception.UserException;
 import com.ecommerce.model.Review;
 import com.ecommerce.model.User;
+import com.ecommerce.request.ReviewRequest;
 import com.ecommerce.service.ReviewService;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,7 @@ public class ReviewController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<?> createReview(@RequestBody Review review, @RequestHeader("Authorization")String jwt) throws UserException, ProductException {
-
+    public ResponseEntity<?> createReview(@RequestBody ReviewRequest review, @RequestHeader("Authorization")String jwt) throws UserException, ProductException {
         User user =userService.findUserProfileByJwt(jwt);
         Review rev = reviewService.createReview(review,user);
         return ResponseEntity.ok(rev);

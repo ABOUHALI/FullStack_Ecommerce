@@ -126,6 +126,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> getAllProduct(String category, List<String> colors, List<String> sizes, Integer minPrice, Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
 
+
+
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
         List<Product> products= productRepository.filterProducts(
                 category,minPrice,maxPrice,minDiscount,sort);
@@ -146,6 +148,8 @@ public class ProductServiceImpl implements ProductService {
         int endIndex =Math.min(startIndex+pageable.getPageSize(),products.size());
 
         List<Product> pageContent = products.subList(startIndex,endIndex);
+
+        //System.out.println("products"+products);
 
         return new PageImpl<>(pageContent,pageable,products.size());
     }

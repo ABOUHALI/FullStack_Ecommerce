@@ -10,6 +10,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProductById } from '../../../State/Product/Action'
 import { addItemToCart } from '../../../State/Cart/Action'
+import { getProductReviews } from '../../../State/Review/Action'
+import { api } from '../../../config/apiConfig'
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -65,11 +67,12 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
+  const [pros, setPros] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [activeImage, setActiveImage] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { products } = useSelector((store) => store);
+  const { products ,review } = useSelector((store) => store);
   const { productId } = useParams();
   const jwt = localStorage.getItem("jwt");
   // console.log("param",productId,products.product)
@@ -80,15 +83,40 @@ export default function ProductDetails() {
 
   const addToCart=()=>{
     const data ={productId:productId,size:selectedSize.name}
-    console.log("beforedispatch",data)
     dispatch(addItemToCart(data))
     navigate("/cart")
 }
 
+async function getProducts() {
+  try {
+      const response = await api.get('api/admin/products/all');
+      const data = response.data;
+      const firstFiveProducts = data.slice(0,5);
+      //console.log(firstFiveProducts);
+      return firstFiveProducts;
+  } catch (error) {
+      console.error('Error fetching ', error);
+      throw error; // Propagate the error to the caller if needed
+  }
+}
+  //const prods=getProducts();
+  //console.log("productshome",prods)
   useEffect(() => {
     const data = { productId: Number(productId), jwt };
-    
+    async function fetchProducts() {
+      try {
+        const firstFiveProducts = await getProducts(); // Call your getProducts function
+        setPros(firstFiveProducts);
+      } catch (error) {
+        console.error('Error fetching products: ', error);
+      }
+    }
+
+    fetchProducts();
     dispatch(findProductById(data));
+    //console.log("findproductsbyid",products.product)
+    dispatch(getProductReviews(Number(productId)))
+    //console.log("productdetails",review?.reviews)
   }, [productId]);
 
   return (
@@ -182,7 +210,7 @@ export default function ProductDetails() {
                   $ {products.product?.price}
                 </p>
                 <p className="text-green-600 font-semibold">
-                  {products.product?.discountPersent}% Off
+                  {products.product?.discountedPersent}% Off
                 </p>
               </div>
 
@@ -341,7 +369,7 @@ export default function ProductDetails() {
 
                     <Grid item xs={7}>
                         <div className='space-y-5'>
-                           {[1,1,1,1].map((item)=><ProductReviewCard/>)}
+                           {products?.product?.reviews.map((item)=><ProductReviewCard item={item}/>)}
                         </div>
                     </Grid>
                     
@@ -414,7 +442,7 @@ export default function ProductDetails() {
         <section className='pt-10'>
             <h1 className='py-5 text-xl font-bold'>Similar Products</h1>
             <div className='flex flex-wrap space-y-5'>
-                {mens_tshirt.map((item)=><HomeSectionCard product={item}/>)}
+                {pros.map((item)=><HomeSectionCard product={item}/>)}
             </div>
         </section>
       </div>

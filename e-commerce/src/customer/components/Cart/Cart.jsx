@@ -5,20 +5,22 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCart } from '../../../State/Cart/Action'
 import { store } from '../../../State/store'
+import { getUser } from '../../../State/Auth/Action'
 
 const Cart = () => {
 
     const navigate=useNavigate();
     const dispatch=useDispatch()
-    const {cart}=useSelector(store=>store)
-
+    const {auth,cart}=useSelector(store=>store)
+    const jwt =localStorage.getItem("jwt")
     const checkout=()=>{
         navigate("/checkout?step=2")
     }
 
     useEffect(()=>{
+        
         dispatch(getCart())
-    },[cart.updatedCartItem,cart.removedCartItem])
+    },[jwt,cart.updatedCartItem,cart.removedCartItem])
 
 
   return (
