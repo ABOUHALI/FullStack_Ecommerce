@@ -5,6 +5,7 @@ import com.ecommerce.model.Rating;
 import com.ecommerce.model.User;
 import com.ecommerce.model.Product;
 import com.ecommerce.repository.RatingRepository;
+import com.ecommerce.request.RatingRequest;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class RatingServiceImpl implements RatingService {
     private ProductService productService;
 
     @Override
-    public Rating createRating(Rating rating, User user) throws ProductException {
-        Product product = productService.findProductById(rating.getProduct().getId());
+    public Rating createRating(RatingRequest rating, User user) throws ProductException {
+        Product product = productService.findProductById(rating.getProductId());
         Rating r =new Rating();
         r.setProduct(product);
         r.setUser(user);

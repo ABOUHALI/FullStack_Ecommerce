@@ -19,7 +19,7 @@ const Cart = () => {
 
     useEffect(()=>{
         
-        dispatch(getCart())
+        dispatch(getCart(jwt))
     },[jwt,cart.updatedCartItem,cart.removedCartItem])
 
 

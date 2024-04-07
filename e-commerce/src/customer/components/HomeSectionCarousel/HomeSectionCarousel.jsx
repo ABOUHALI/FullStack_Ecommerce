@@ -21,7 +21,7 @@ const HomeSectionCarousel = ({data,sectionName}) => {
     console.log("sync");
     setActiveIndex(item)}
 
-  const items = data.slice(0,10).map((item) => <HomeSectionCard product={item}/>);
+  const items = data.slice(0,10).map((item) => <HomeSectionCard product={item} section={`/men/clothing/mens_tshirt`}/>);
   return (
     <div className="border">
         <h2 className="text-2xl font-extrabold text-gray-800 py-5">{sectionName}</h2>

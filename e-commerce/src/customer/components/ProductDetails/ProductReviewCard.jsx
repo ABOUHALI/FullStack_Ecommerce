@@ -2,7 +2,7 @@ import { Box, Grid, Avatar, Rating } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createReview } from "../../../State/Review/Action";
+//import { createReview } from "../../../State/Review/Action";
 
 const ProductReviewCard = ({ item }) => {
   const navigate = useNavigate();

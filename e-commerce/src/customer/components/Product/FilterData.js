@@ -49,7 +49,7 @@ export const color = [
       ],
     },
     {
-      id: "disccout",
+      id: "discount",
       name: "Discount Range",
       options: [
         {
