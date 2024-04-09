@@ -20,7 +20,7 @@ const CartItem = ({item}) => {
     };
     const handleRemoveCartItems=()=>{
         //const {data}={data:{quantity:item.quantity-num},cartItemId:item?.id}
-        dispatch(removeCartItem(item.id))
+        dispatch(removeCartItem(item?.id))
     }
   return (
     <div className='p-5 shadow-lg border rounded-md'>

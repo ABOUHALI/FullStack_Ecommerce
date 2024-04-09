@@ -1,0 +1,88 @@
+\makeatletter
+\@ifclassloaded{scrartcl}{
+  \maketitle{}
+}{
+  % die selbst entworfene Titelseite, die evtl.  automatisch angepasst
+  % werden kann
+  \thispagestyle{empty}
+  \begin{titlepage}
+
+      % die Leerzeilen bedeuten immer das Ende bzw. den Beginn eines neuen
+      % Absatzes, ohne eine Leerzeile wird der laufende Text fortgesetzt
+
+      % die Ortsangabe soll einheitlich rechtsbündig gesetzt werden, dafür
+      % wird die Angabe in einen Kasten (\parbox[position][height][inner
+      % position]{width}{text}) gepackt, der passend verschoben wird
+
+      % die Box soll rechtsbündig erscheinen, um waagerechten Leerraum zu
+      % erhalten, benutzt man \hspace{length}. length kann eine variable
+      % Größe ein, mit der Platz aufgefüllt wird: \fill
+
+      % eine geratene Größe für eine Breite ist manchmal ausreichend,
+      % meistens aber nicht
+      \settowidth{\myWidth}{\sffamily\large Angewandte Mathematik und
+        Informatik}
+      % ^ die Auswahl und die Größe des Fonts sind wichtig, sonst stimmen
+      % Größen nicht überein
+      \hspace{\fill}\parbox{\myWidth}{
+        % da mehrere Zeilen in einem anderen Font gesetzt werden sollen,
+        % benutzt man Befehle, die gruppenintern gelten
+        % \scshape
+        %   Kapitälchen (sc: small caps), alle Buchstaben werden groß
+        %   geschrieben, die Großbuchstaben ein bisschen größer, entspricht
+        %   nicht dem Corporate Design der FH
+        \sffamily % serifenloser Font
+        \raggedleft % rechtsbündiger Satz
+        \large Fachhochschule Aachen Campus Jülich
+
+        Medizintechnik und Technomathematik
+
+        Angewandte Mathematik und Informatik }
+      \begin{tikzpicture}[remember picture, overlay]
+          \node [xshift=15mm, yshift=-51mm](a) at (current page.north west)
+          {%
+            \includegraphics{fh_logo_links}};
+      \end{tikzpicture}
+
+      % eine gute Einteilung von Titelseiten erfolgt nach dem
+      % Drittelprinzip oder nach dem Golgenen Schnitt Drittelprinzip (um
+      % 90° gedreht): 2/3        1/3
+      %               +----------+-----+
+      %               |          |     |
+      %               +----------+-----+
+      %
+      % Goldener Schnitt (um 90° gedreht): a          b
+      %                                    +----------+-----+
+      %                                    |          |     |
+      %                                    +----------+-----+
+      % mit a:b = (a+b):a
+
+      \vspace{160pt}%
+      \rule{\textwidth}{2pt}
+
+      \begin{center}
+          \Huge \textsf{\bfseries Webshopping mit Spring Boot und React}
+
+          % um senkrechten Leerraum zu erhalten, beginnt man den Absatz mit
+          % einem \vspace{length}. length ist eine Größe, die in einer
+          % beliebigen Einheit angegeben werden kann, normalerweise in pt
+          % pt: point, 1 pt ist der 1/72,27 Teil eines inches (1 in = 2,54
+          % cm), 10 pt entsprechen ungefähr 3 mm.
+          \vspace{20pt}%
+          \Large  eine PraxisProjekt von Ayman~ABOUHALI
+          % ~: bedeutet einen nicht umbrechbaren Zwischenraumes wäre ein
+          % schwerer typographischer Fehler, ...  N.~N.: aus dem
+          % Lateinischen - nomen nominandum: ein noch zu benennender Name -
+          % nomen nescio: ich weiß den Namen (noch) nicht
+      \end{center}
+
+      \rule{\textwidth}{2pt}
+
+      \vspace{15pt}
+      \begin{center}
+          \today
+      \end{center}
+
+  \end{titlepage}
+}
+\makeatother

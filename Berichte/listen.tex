@@ -1,0 +1,335 @@
+%%% quad_gl.tex ---
+%
+%% Author: j.hoffmann@fh-aachen.de
+%% Version: $Id: quad_gl.tex 0 <2022/12/20 13:10:30> ax006ho $
+%%          update date and time by C-u M-x org-time-stap
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\NewDocumentCommand{\Date}{}{Aachen, April 2024}
+\NewDocumentCommand{\Author}{}{ABOUHALI Ayman}
+\usepackage{beamerarticle}   
+         % um das Erstellen von Präsentationen
+% zu ermöglichen
+\usepackage{float}
+\setcounter{section}{1}
+% Einstellungen
+% =============
+
+% Da die Einstellungen sich von Dokument zu Dokument kaum verändern,
+% ist es sinnvoll, diese an einer zentralen Stelle abzulegen und von
+% dort zu laden. Dies geschieht völlig transparent mit dem Befehl
+% \input{<Pfad>}, dem als Argument eine Datei mit (relativem) Zugriffs-
+% pfad übergeben wird
+\input{thesis-cfg}
+% in dieser Datei werden alle Zusatzpakete mittels
+% \usepackage{<package>} geladen
+
+\input{switch-cfg}
+% in dieser Datei werden Kommandos zum Umschalten zwischen verschiedenen
+% Zielformaten (Buch, Report, Artikel, ...)
+\lstdefinelanguage[ECMAScript2015]{JavaScript}[]{JavaScript}{
+	morekeywords=[1]{await, async, case, catch, class, const, default, do,
+		enum, export, extends, finally, from, implements, import, instanceof,
+		let, static, super, switch, throw, try},
+	morestring=[b]` % Interpolation strings.
+}
+
+
+%
+% JavaScript version 1.1 by Gary Hammock
+%
+% Reference:
+%   B. Eich and C. Rand Mckinney, "JavaScript Language Specification
+%     (Preliminary Draft)", JavaScript 1.1.  1996-11-18.  [Online]
+%     http://hepunx.rl.ac.uk/~adye/jsspec11/titlepg2.htm
+%
+
+\lstdefinelanguage{JavaScript}{
+	morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+		new, return, this, typeof, var, void, while, with},
+	% Literals, primitive types, and reference types.
+	morekeywords=[2]{false, null, true, boolean, number, undefined,
+		Array, Boolean, Date, Math, Number, String, Object},
+	% Built-ins.
+	morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+	sensitive,
+	morecomment=[s]{/*}{*/},
+	morecomment=[l]//,
+	morecomment=[s]{/**}{*/}, % JavaDoc style comments
+	morestring=[b]',
+	morestring=[b]"
+}[keywords, comments, strings]
+
+
+\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
+
+% Requires package: color.
+\definecolor{mediumgray}{rgb}{0.3, 0.4, 0.4}
+\definecolor{mediumblue}{rgb}{0.0, 0.0, 0.8}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\definecolor{darkviolet}{rgb}{0.58, 0.0, 0.83}
+\definecolor{royalblue}{rgb}{0.25, 0.41, 0.88}
+\definecolor{crimson}{rgb}{0.86, 0.8, 0.24}
+
+\lstdefinestyle{JSES6Base}{
+	backgroundcolor=\color{white},
+	basicstyle=\ttfamily,
+	breakatwhitespace=false,
+	breaklines=false,
+	captionpos=b,
+	columns=fullflexible,
+	commentstyle=\color{mediumgray}\upshape,
+	emph={},
+	emphstyle=\color{crimson},
+	extendedchars=true,  % requires inputenc
+	fontadjust=true,
+	frame=single,
+	identifierstyle=\color{black},
+	keepspaces=true,
+	keywordstyle=\color{mediumblue},
+	keywordstyle={[2]\color{darkviolet}},
+	keywordstyle={[3]\color{royalblue}},
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{black},
+	rulecolor=\color{black},
+	showlines=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	stringstyle=\color{forestgreen},
+	tabsize=2,
+	title=\lstname,
+	upquote=true  % requires textcomp
+}
+
+\lstdefinestyle{JavaScript}{
+	language=JavaScript,
+	style=JSES6Base
+}
+\lstdefinestyle{ES6}{
+	language=ES6,
+	style=JSES6Base
+}
+
+\begin{document}
+	\newsavebox\myv
+	\frontmatter                    % es wird mit kleinen, römischen Zahlen
+	% gezählt
+	
+	% \maketitle                    % die automatisch erzeugte
+	% Titelseite, dies erfordert
+	% die Angabe des Autors und des
+	% Titels in den Einstellungen,
+	% kann für eine Bachelor-, ...
+	% Arbeir nicht benutzt werden!
+	
+	\input{titel_quad_gl} % die selbst entworfene Titelseite
+	\makeatletter
+	\@ifclassloaded{scrartcl}{}{\newpage
+		Diese Arbeit ist von mir selbständig angefertigt und verfasst. Es sind keine anderen als die angegebenen Quellen und Hilfsmittel benutzt worden. \\
+		\vspace*{1cm}
+		\hspace*{\fill}\rlap{\raisebox{5pt}{\Author}}\makebox[5cm]{\dotfill}\\
+		\hspace*{\fill}\makebox[5cm][l]{Unterschrift}
+		\vspace{14cm}
+		
+		\begin{normalsize}
+Diese Arbeit wurde betreut von:
+		\end{normalsize}
+		
+		\vspace*{1cm}
+		
+		Betreuer:\rlap{\raisebox{1pt}{Prof Dr.rer.nat Herr Rohde }} \\
+		 \vspace{1cm}
+		
+	
+	}
+	\makeatother
+	
+	
+	
+	% Die Zusammenfassung erscheint auf einer eigenen Seite
+	\makeatletter
+	\@ifclassloaded{scrartcl}{\begin{abstract}}{\chapter*{Abstrakt}}
+		\makeatother
+			Im heutigen digitalen Zeitalter ist es essenziell, Webanwendungen zu entwickeln, die sowohl schnell als auch benutzerfreundlich sind. Benutzer erwarten nahtlose Erfahrungen auf verschiedenen Geräten, was dazu führt, dass moderne Web-Entwicklung vermehrt auf einfache Seiten und Applikationen setzt. Die Hauptziele sind Effizienzsteigerung, schnelle Antworten und einfache Handhabung. Single-Page-Applikationen (SPA) vereinen diese Ansprüche, indem sie nur aus einem HTML-Dokument bestehen und Inhalte dynamisch nachladen. Dies ermöglicht eine schnellere Benutzererfahrung, da keine ständigen Seitenwechsel nötig sind.
+			
+			React, ein häufig genutztes JavaScript-Framework, bietet die Basis für SPA-Entwicklung. Es optimiert Gestaltung und Aussehen für verschiedene Geräte und ermöglicht einen effizienten Offline-Modus. React zeichnet sich durch einen einseitigen Datenfluss aus und bietet starke Performance, auch bei komplexen Anwendungen. Der unidirektionale Datenfluss vereinfacht den Aufbau und die Wechselwirkungen der Komponenten.
+			
+			Trotz der Vorteile von React kann die Zustandsverwaltung zu Komplexität und undurchsichtigem Quellcode führen. Redux bietet hier eine Lösung durch zentrale Zustandsverwaltung. Insgesamt bietet React eine ideale Plattform für die Entwicklung komplexer Webanwendungen mit einheitlicher Benutzerführung.
+			
+			Auf der Backend-Seite bietet Spring Boot eine leistungsfähige Plattform zur Entwicklung von robusten und skalierbaren Anwendungen. Mit Spring Boot können Backend-Services und APIs schnell und effizient entwickelt werden. Spring Boot vereinfacht die Konfiguration und den Betrieb von Spring-Anwendungen erheblich und ermöglicht eine schnelle Implementierung von RESTful APIs.
+			
+			Durch die Kombination von React für die Frontend-Entwicklung und Spring Boot für das Backend bietet sich eine optimale Lösung zur Entwicklung von Webanwendungen an. React bietet eine ideale Plattform für die Entwicklung von benutzerfreundlichen Benutzeroberflächen, während Spring Boot eine leistungsstarke und skalierbare Backend-Plattform bereitstellt. Diese Kombination ermöglicht die Entwicklung von modernen und ansprechenden Webanwendungen, die den Anforderungen der heutigen digitalen Landschaft gerecht werden.
+		\makeatletter
+		\@ifclassloaded{scrartcl}{\end{abstract}}{}
+	\makeatother
+	
+	\tableofcontents
+	\newpage
+	\listoffigures
+	\newpage
+	
+	\makeatletter
+	\@ifclassloaded{scrartcl}{}{\mainmatter}
+	\makeatother
+	
+	
+	
+	
+	
+	\chapter{Projektbeschreibung}
+Das E-Commerce-Projekt zielt darauf ab, das Online-Shopping-Erlebnis zu revolutionieren, indem verschiedene Funktionalitäten nahtlos integriert werden, um die Benutzerfreundlichkeit und Zufriedenheit zu verbessern. Diese ambitionierte Initiative stellt ein umfassendes System vor, das nicht nur eine effiziente Produktsuche und -kauf ermöglicht, sondern auch eine reibungslose Auftragsabwicklung und Kundenbindung sicherstellt.
+
+Im Kern konzentriert sich das E-Commerce-Projekt darauf, eine robuste Online-Plattform aufzubauen, die die Benutzerfreundlichkeit maximiert und sichere Transaktionen fördert. Durch die Implementierung fortschrittlicher Technologien und benutzerzentrierter Designprinzipien zielt das Projekt darauf ab, ein nahtloses Einkaufserlebnis über verschiedene Geräte und Plattformen hinweg zu bieten.
+
+Die Hauptziele des E-Commerce-Projekts umfassen:
+\begin{itemize}
+	\item Aufbau einer benutzerfreundlichen und responsiven Website, die den Anforderungen moderner Online-Shopper gerecht wird.
+	\item Implementierung eines sicheren Authentifizierungs- und Autorisierungssystems zum Schutz von Benutzerdaten und Transaktionen.
+\end{itemize}
+
+	\section{Funktionale Spezifikation}
+	\begin{itemize}
+		\item \textbf{Administrator API}
+			Diese API umfasst Funktionen, die es Administratoren ermöglichen, den Zustand jeder Station zu überwachen und Daten abzurufen. Zusätzlich bietet sie Mechanismen zur Verwaltung von Produkten sowie zur Einsichtnahme in Kunden- und Bestelldaten im Dashboard. Auch die Funktionen für die Anmeldung/Registrierung und die Passwortwiederherstellung sind enthalten, um die sichere Verwaltung der Software zu gewährleisten.
+		
+		\item \textbf{Benutzer-API}
+		
+		Das Projekt bietet eine Benutzer-API, die es Entwicklern ermöglicht, Registrierungs- und Anmeldefunktionalitäten für Kunden zu implementieren sowie Tracking-Anwendungen. Außerdem können Benutzer Reservierungen auf der E-Commerce-Plattform vornehmen.
+		
+	\item \textbf{Relationale Datenbank mit MySQL}
+	
+	Das Projekt verwendet MySQL als das zugrunde liegende Datenbanksystem, um alle Arten von API-Daten zu speichern, einschließlich Benutzerkonten, Produktinformationen, Bestellungen und Transaktionsdaten.
+	
+	\item \textbf{Benutzer-/Administrator-API}
+	
+	Eine API, die speziell entwickelt wurde, um Benutzerkonten innerhalb der Anwendungen zu verwalten, einschließlich Benutzerregistrierung, Anmeldung und Profilverwaltung.
+	
+	\item \textbf{Administrator-Interface zur Überwachung des Systems}
+
+Eine benutzerdefinierte und benutzerfreundliche Oberfläche, die den Überwachungsanforderungen des E-Commerce-Systems entspricht. Sie bietet ein ansprechendes Design für Echtzeitüberwachung und Befehlssendung.
+	\end{itemize}
+	\section{Non-Functional Specification}
+	\begin{itemize}
+			\item \textbf{Leistung:}\\
+			Die Anwendung sollte in der Lage sein, einen hohen Lastanstieg zu bewältigen, insbesondere während des Spitzenverkehrszeiten wie Black Friday oder anderen Verkaufsaktionen.
+			\item \textbf{Benutzerfreundlichkeit und Design:}\\
+			+Das Design der Webseite sollte benutzerfreundlich sein und den Benutzern eine intuitive Navigation ermöglichen, um die Auffindbarkeit von Produkten und die Abschlussrate von Bestellungen zu erhöhen.\\
+			+Die Benutzeroberfläche sollte reaktionsschnell sein und sich an verschiedene Bildschirmgrößen und Geräte anpassen, um eine konsistente Benutzererfahrung auf Desktops, Tablets und Smartphones zu gewährleisten.
+			\item \textbf{Sicherheit :}\\
+			+Die Anwendung sollte vor häufigen Sicherheitsbedrohungen wie Cross-Site-Scripting (XSS), SQL-Injektion und Cross-Site-Request-Forgery (CSRF) geschützt sein.\\
+			+Die Benutzerdaten sollten verschlüsselt und sicher gespeichert werden, um Datenschutzbestimmungen einzuhalten und Datenlecks zu vermeiden.
+	\end{itemize}
+\chapter{die Konzeption von Klassendiagrammen und API}
+\section{Klassendiagramm der Anwendung}
+Im folgenden Abschnitt wird das Klassendiagramm der Anwendung präsentiert. Das Diagramm bietet eine visuelle Darstellung der Klassenstruktur und ihrer Beziehungen zueinander. Durch die Visualisierung der Architektur erhalten Leser einen umfassenden Überblick über die Softwarestruktur, was das Verständnis und die Analyse der Anwendung erleichtert.
+\begin{figure}[H]
+	\includegraphics[width=15cm]{klassenDiagram.png}
+	\caption{Klassendiagramm der Anwendung }
+	\label{fig:klsdiag}
+\end{figure}
+
+\section{API-Dokumentation mit Swagger}
+In diesem Abschnitt wird ein Ausschnitt der API-Dokumentation mithilfe von Swagger präsentiert. Das Swagger-UI bietet eine interaktive Darstellung der verfügbaren API-Endpunkte, ihrer Parameter und Rückgabewerte. Durch die Nutzung von Swagger können Entwickler die API-Funktionalität erkunden, testen und verstehen, ohne die Anwendung zu verlassen. Der folgende Screencap vermittelt einen Eindruck davon, wie die API mithilfe von Swagger dokumentiert ist und wie Benutzer mit den verschiedenen Endpunkten interagieren können.
+\begin{figure}[H]
+	\includegraphics[width=17cm]{swagger1.png}
+	\caption{Ausschnitt der API-Dokumentation 1 }
+	\label{fig:swg1}
+\end{figure}
+\begin{figure}[H]
+	\includegraphics[width=17cm]{swagger2.png}
+	\caption{Ausschnitt der API-Dokumentation 2 }
+	\label{fig:swg2}
+\end{figure}
+\begin{itemize}
+	
+\item	\textbf{Authentifizierung:} Benutzer können sich mit JWT authentifizieren und Zugriff auf geschützte Ressourcen erhalten.
+\item	\textbf{Produktsuche:} Kunden können Produkte nach bestimmten Kriterien suchen.
+\item	\textbf{Warenkorb:} Kunden können Produkte hinzufügen und aus dem Warenkorb entfernen.
+\item	\textbf{Bestellungen:} Kunden können Produkte aus dem Warenkorb bestellen.
+\item	\textbf{Benutzerprofil:} Kunden können ihre Bestellungen einsehen. Darüber hinaus können sie Produktbewertungen und -rezensionen verfassen und hinzufügen.
+\item	\textbf{Admin-Funktionen:} Der Administrator kann Produkte hinzufügen oder bearbeiten sowie Benutzerdaten ändern und Bestellungen einsehen.
+	
+\end{itemize}
+	\chapter{Verwendete Technologien}
+	Das Projekt nutzt eine Vielzahl von Technologien, die jeweils einem bestimmten Zweck dienen. Hier ist ein Überblick über die verwendeten Technologien:
+	    \section{Backend-Entwicklung}
+	\subsection{Java(Version 17.0.6 )} Verwendet als Backend-Programmiersprache für die Entwicklung der Anwendung. Java bietet eine robuste und zuverlässige Grundlage für die Implementierung der Geschäftslogik und Datenverarbeitung.
+	\subsection{Spring Framework} Eingebunden für den Aufbau der Backend-Infrastruktur, einschließlich RESTful-Webdienste, Dependency Injection und MVC-Architektur.
+	\subsubsection{Spring Boot (Version 3.2.2)}    
+	Spring Boot bietet ein robustes und schlankes Framework für die Entwicklung von Java-basierten Anwendungen. Es vereinfacht die Konfiguration und den Aufbau von Anwendungen durch automatische Konventionen und Integrationen.
+	
+		\subsubsection{Spring Data (Version 3.2.2.)}
+	Spring Data erleichtert Datenbankoperationen und die objektrelationale Abbildung (ORM) durch automatisierte Repository-Erstellung und Datenzugriffsmethoden.
+	
+	\subsubsection{Spring Web und Spring REST (Version 3.2.2)}
+	Spring Web und Spring REST werden verwendet, um RESTful APIs zu erstellen und Webanfragen zu verarbeiten. Sie bieten Unterstützung für die Erstellung von RESTful Endpoints und die Verarbeitung von HTTP-Anfragen und -Antworten.
+	
+
+	
+	\subsubsection{Spring Security (Version 6.2.1)}
+	Spring Security gewährleistet die Authentifizierung und Autorisierung von Benutzern für einen sicheren Zugriff auf Ressourcen. Es bietet Funktionen wie Authentifizierung mit Benutzername/Passwort, OAuth, JWT usw.
+	
+	\subsubsection{Spring Validator (Version 3.0.2)}
+	Spring Validator bietet Unterstützung für die Validierung von Dateninputs und die Sicherstellung der Datenintegrität. Es ermöglicht die Definition von Validierungsregeln für Formulardaten und Eingabefelder.
+	
+	\subsubsection{Spring Devtools (Version 2.5.4)}
+	Spring Devtools bietet eine verbesserte Entwicklungserfahrung mit Funktionen wie automatischem Neustart der Anwendung, LiveReload und Hot Swapping. Es beschleunigt den Entwicklungsprozess und erhöht die Produktivität.
+	
+	\subsubsection{Lombok (Version 1.18.20)}
+	Lombok vereinfacht die Java-Entwicklung, indem es automatisch Boilerplate-Code generiert. Es reduziert den Aufwand beim Schreiben von Getter, Setter, Konstruktoren und anderen häufig verwendeten Methoden.
+	
+	\subsubsection{Stripe (Version 20.62.0)}
+	Stripe ist eine leistungsstarke Zahlungsabwicklungsplattform, die die Integration von Zahlungsfunktionen in Anwendungen erleichtert. Mit Stripe können Entwickler Zahlungen akzeptieren, verwalten und abwickeln, ohne komplexe Infrastruktur aufbauen zu müssen. Durch die Nutzung von Stripe können Entwickler Zeit sparen und sich auf die Kernfunktionen ihrer Anwendungen konzentrieren, während Stripe die Zahlungsabwicklung effizient und sicher abwickelt.
+	
+	
+	\section{Front-End Entwicklung}
+	\subsection{React.js (Version 18.2.0)}
+	 Verwendet für die Entwicklung der Benutzeroberfläche der E-Commerce-Website. React bietet eine komponentenbasierte Architektur für die Erstellung interaktiver und reaktiver Benutzeroberflächen.
+	 \subsection{Redux (5.0.1)}
+	 Eingebunden zur Verwaltung des globalen Zustands der Anwendung. Redux ermöglicht eine zentrale Speicherung von Daten und erleichtert die Handhabung komplexer Anwendungsdaten.
+	 \subsection{MUI : Material-UI (Version 5.15.6)}Verwendet für die Implementierung von vorgefertigten React-Komponenten im Material Design-Stil. Material-UI verbessert die Benutzererfahrung durch konsistente und ansprechende Benutzeroberflächenkomponenten
+	 \subsection{Tailwind CSS (Version 3.4.1)} Eingesetzt für das Styling der Benutzeroberfläche. Tailwind CSS bietet nützliche CSS-Klassen, die eine schnelle Entwicklung und Anpassung von UI-Elementen ermöglichen.
+	  \subsection{JavaScript / HTML / CSS / SCSS} Wesentliche Web-Technologien, die für
+	 Client-seitiges Scripting, Strukturierung von Webinhalten und Styling.
+	 \section{Datenbank-Management}
+	 \subsection{MySQL}
+	 Verwendet als relationales Datenbankmanagementsystem (RDBMS) für die Speicherung von Produktinformationen, Benutzerdaten, Bestelldetails und anderen relevanten Daten
+	 \section{Weiter Technologien}
+	 \subsection{Git}
+	 Eingesetzt für die Versionskontrolle und Zusammenarbeit im Entwicklungsprozess.
+	 \subsection{IDEs (Integrierte Entwicklungsumgebungen)}
+	 In der Entwicklung unserer Anwendung habe ich Visual Studio für das Frontend und IntelliJ IDEA für das Backend mit Spring Boot eingesetzt. Diese bewährten integrierten Entwicklungsumgebungen boten uns eine benutzerfreundliche Plattform für das Codieren, Debuggen und Testen, was zu effizienter Entwicklung und hoher Anwendungsqualität führte.
+	
+	\appendix
+	
+	
+	\makeatletter
+	\@ifclassloaded{scrartcl}{\section*{Fazit}
+		\addcontentsline{toc}{section}{\protect\numberline{}Fazit}}
+	{\chapter*{Fazit}}
+	\makeatother
+	Zusammenfassend lässt sich sagen, dass das Ecommerce-Projekt sein Ziel, eine nahtlose und effiziente Plattform für den Online-Einkauf zu schaffen, erreicht hat. Durch die Integration fortschrittlicher Technologien und benutzerorientierter Designprinzipien bietet das Projekt eine umfassende Lösung für Kunden und Administratoren gleichermaßen.
+	
+	Für Kunden bietet die E-Commerce-Plattform eine benutzerfreundliche Oberfläche, die ein einfaches Browsen, eine einfache Produktauswahl und eine einfache Kaufabwicklung ermöglicht. Funktionen wie Registrierung, Anmeldung und Auftragsverfolgung verbessern das gesamte Einkaufserlebnis, während sichere Zahlungsgateways die Sicherheit und Zuverlässigkeit der Transaktionen gewährleisten.
+	
+	Administratoren profitieren von robusten Backend-Funktionen, einschließlich Bestandsverwaltung, Auftragsabwicklung und Kundensupport-Tools. Die Skalierbarkeit und Flexibilität des Systems ermöglicht eine einfache Anpassung an veränderte Geschäftsanforderungen.
+	
+	Durch Echtzeit-Analysen und Datenvisualisierung ermöglicht das Ecommerce-Projekt Unternehmen, fundierte Entscheidungen in Bezug auf Bestandsmanagement, Marketingstrategien und Kundenbindung zu treffen. Durch den Einsatz von Spitzentechnologien wie React, Redux und Spring Boot bietet die Plattform eine hohe Leistung und Reaktionsfähigkeit auf verschiedenen Geräten und Betriebssystemen.
+	
+	Im Wesentlichen stellt das Ecommerce-Projekt einen bedeutenden Fortschritt im Bereich des Online-Handels dar und bietet eine skalierbare, sichere und benutzerfreundliche Lösung für Unternehmen, die im digitalen Zeitalter erfolgreich sein wollen. Da sich die Technologie ständig weiterentwickelt, ist das Projekt bereit für weitere Verbesserungen und Innovationen, die die Zukunft des E-Commerce in Richtung größerer Effizienz, Nachhaltigkeit und Kundenzufriedenheit vorantreiben.
+
+	\backmatter                     % keine Zählung der folgenden Kapitel
+	
+	
+	
+	
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-engine: luatex
+%%% ispell-local-dictionary: "deutsch8"
+%%% End:

@@ -58,6 +58,7 @@ export default function Navigation() {
   
   useEffect(()=>{
     if(jwt){
+      console.log("naviagtion")
       dispatch(getUser(jwt))
       dispatch(getCart())
     }
@@ -72,13 +73,18 @@ export default function Navigation() {
     if(location.pathname==="/login" || location.pathname==="/register"){
         navigate(-1)
     }
-  },[auth.user])
+  }, [auth.user])
 
     const handleLogout=()=>{
       dispatch(logout())
       handleCloseUserMenu()
+      navigate("/")
     }
-  
+   
+    const handleOrderClick=()=>{
+      handleCloseUserMenu()
+      auth.user?.role==="ADMIN"?navigate("/admin"):navigate("/account/order")
+    }
 
   return (
     <div className="bg-white pb-10">
@@ -265,7 +271,7 @@ export default function Navigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
+              <div className="ml-4 flex lg:ml-0" onClick={()=>navigate('/')}>
                 
                   <span className="sr-only">Your Company</span>
                   <img
@@ -448,8 +454,8 @@ export default function Navigation() {
                       >
               
                         
-                        <MenuItem onClick={()=>navigate("/account/order")}>
-                          My Orders
+                        <MenuItem onClick={handleOrderClick}>
+                          {auth.user?.role==="ADMIN"?"Admin Dashboard":"My Orders"}
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </Menu>
@@ -485,7 +491,7 @@ export default function Navigation() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />{<span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                    {cart.cart?.totalItem}
+                    {cart?.cart?.totalItem}
                     </span>}
                     
                     <span className="sr-only">items in cart, view bag</span>

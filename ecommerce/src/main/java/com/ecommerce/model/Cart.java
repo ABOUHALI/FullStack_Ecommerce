@@ -3,12 +3,14 @@ package com.ecommerce.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
+@Getter
 @Entity
 public class Cart {
 
@@ -47,55 +49,28 @@ public class Cart {
         this.totalItem = totalItem;
     }
 
-    public int getTotalDiscountedPrice() {
-        return totalDiscountedPrice;
-    }
-
     public void setTotalDiscountedPrice(int totalDiscountedPrice) {
         this.totalDiscountedPrice = totalDiscountedPrice;
-    }
-    public int getDiscount() {
-        return discount;
     }
 
     public void setDiscount(int discount) {
         this.discount = discount;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public Set<CartItem> getCartItems() {
-        return cartItems;
-    }
-
     public void setCartItems(Set<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public int getTotalItem() {
-        return totalItem;
     }
 
     public void setTotalItem(int totalItem) {

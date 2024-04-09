@@ -74,7 +74,7 @@ const CustomersTable = () => {
                       {item.firstName + " " + item.lastName}
                     </TableCell>{" "}
                     <TableCell align="left">{item.email}</TableCell>
-                    <TableCell align="left">{item.addresses[0].streetAddress +" "+item.addresses[0].city}</TableCell>
+                    <TableCell align="left">{item.addresses[0]?.streetAddress +" "+item.addresses[0]?.city}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

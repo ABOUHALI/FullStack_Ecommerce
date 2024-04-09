@@ -1,0 +1,74 @@
+% Leslie Lamport hat LaTeX entwickelt, um dem Anwender das Schreiben
+% spezieller Dokumente zu vereinfachen. Um den europäischen/deutschen
+% Vorstellungen eines Layouts zu entsprechen, hat Markus Kohm analoge
+% Dokumentklassen entwickelt (Koma-Klassen)
+
+% Diese Dokumente sind
+% im Original    extern              Koma       extern
+% 1. article                         scrartcl
+% 2. report                          scrreprt
+% 3. book                            scrbook
+% 4. letter                          scrlttr2
+% 5. slide                                      beamer
+% 6.             poster                         tikzposter
+% 7.                                            komacv bzw. europecv
+% Das Layout ist im Original amerikanischen Vorstellungen ensprechend!
+
+% Der Aufbau ist immer
+
+% Kopf des Dokumentes
+% ===================
+\documentclass[ngerman,               % in eckigen Klammern stehen
+                                      % optionale Angaben, hier: ngerman
+                                      % - es werden Trennmuster nach
+                                      %   _n_euer deutscher Recht-
+                                      %   schreibung geladen
+                                      % - wenn das Zusatzpaket babel
+                                      %   geladen ist, kann der Autor
+                                      %   länderspezifische
+                                      %   Befehle, beispielsweise für
+                                      %   Anführungszeiche direkt
+                                      %   eingeben
+                                      % typographische Regeln:
+                                      % in der scrreprt-Klasse beginnt
+                                      % jedes Kapitel auf einer
+                                      % neuen Seite, leere Seiten wie
+                                      % die Zusammenfassung
+                                      % erhalten keine Seitennummer,
+                                      % ebensowenig Titelseiten, es
+                                      % werden alle(!!!) Seiten intern
+                                      % nummeriert, die Titelseite
+                                      % hat die Nummer 1, die
+                                      % Seitennummerierung erfolgt
+                                      % unten mittig
+               a4paper,               % Ausgabe auf DIN A4 Seiten
+             % draft,                 % Satzspiegelfehler werden
+                                      % angezeigt, Abbildungen werden
+                                      % nicht ausgegeben
+               fleqn,                 % math. Formeln werden mit festem
+                                      % Einzug von links dargestellt
+                     ]{scrbook}       % die Klasse scrbook erfordert
+                                      % \frontmatter
+                                      %     vor Titel, Vorwort, Bezeichnungen
+                                      %     und Inhaltsverzeichnis (m!)
+                                      % \mainmatter
+                                      %     vor dem eigentlichen Text
+                                      % \appendix
+                                      %     vor dem Anhang
+                                      % \backmatter
+                                      %     vor Glossar, Bibliographie (m!)
+                                      %     und Index
+
+% nun wird der Text der Arbeit geladen
+\input{listen}
+
+
+% der folgende Kommentar wird vom Emacs gebraucht, ist also ansonsten ohne
+% Bedeutung!
+
+%%% Local Variables:
+%%% TeX-engine: luatex
+%%% mode: latex
+%%% TeX-master: t
+%%% ispell-local-dictionary: "deutsch8"
+%%% End:

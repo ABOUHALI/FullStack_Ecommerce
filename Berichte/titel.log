@@ -1,0 +1,443 @@
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.11.19)  29 JAN 2023 08:32
+ restricted system commands enabled.
+**titel.tex
+(./titel.tex
+LaTeX2e <2022-11-01>
+Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
+Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2022-10-04 2.75 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "C:/texlive/2022/texmf-var/luatex-ca
+che/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2022-10-03.lua" from kpse-res
+olved path "c:/texlive/2022/texmf-dist/tex/luatex/luaotfload/fontloader-2022-10-
+03.lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.120
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "C:/texlive/2022/texmf-var/luatex-ca
+che/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'. L3 programm
+ing layer <2022-11-02>
+Inserting `tracingstacklevels' in `input_level_string'.
+
+! LaTeX Error: Environment titlepage undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+luaotfload | db : Font names database loaded from C:/texlive/2022/texmf-var/luat
+ex-cache/generic/names/luaotfload-names.luc.gz
+! Undefined control sequence.
+<argument> \sffamily \large 
+                 Angewandte Mathematik und Informatik
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \myWidth 
+         
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+\setbox 
+l.89 }
+    
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+\setbox 
+l.89 }
+    
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<argument> \myWidth 
+         
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+\relax 
+l.89 }
+    
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+\relax 
+l.89 }
+    
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+<argument> ... \@parboxrestore  \sffamily \raggedleft \large 
+                                                  Fachhochschule Aachen Camp...
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (23.16pt too wide) in paragraph at lines 89--89
+ []\TU/lmss/m/n/10 Fach-
+ []
+
+
+Overfull \hbox (45.5pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 hochschule
+ []
+
+
+Overfull \hbox (30.7pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 Aachen
+ []
+
+
+Overfull \hbox (22.47pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 Cam-
+ []
+
+
+Overfull \hbox (14.17pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 pus
+ []
+
+
+Overfull \hbox (24.28pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 Jülich
+ []
+
+
+Overfull \hbox (24.08pt too wide) in paragraph at lines 89--89
+ []\TU/lmss/m/n/10 Medi-
+ []
+
+
+Overfull \hbox (7.68001pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 z-
+ []
+
+
+Overfull \hbox (10.89pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 in-
+ []
+
+
+Overfull \hbox (20.99pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 tech-
+ []
+
+
+Overfull \hbox (12.45pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 nik
+ []
+
+
+Overfull \hbox (15.51pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 und
+ []
+
+
+Overfull \hbox (23.36pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 Tech-
+ []
+
+
+Overfull \hbox (13.5pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 no-
+ []
+
+
+Overfull \hbox (24.86pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 math-
+ []
+
+
+Overfull \hbox (7.77pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 e-
+ []
+
+
+Overfull \hbox (23.64pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 matik
+ []
+
+
+Overfull \hbox (24.61pt too wide) in paragraph at lines 89--89
+ []\TU/lmss/m/n/10 Ange-
+ []
+
+
+Overfull \hbox (29.75pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 wandte
+ []
+
+
+Overfull \hbox (25.67pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 Math-
+ []
+
+
+Overfull \hbox (7.77pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 e-
+ []
+
+
+Overfull \hbox (23.64pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 matik
+ []
+
+
+Overfull \hbox (15.51pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 und
+ []
+
+
+Overfull \hbox (11.28pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 In-
+ []
+
+
+Overfull \hbox (14.53pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 for-
+ []
+
+
+Overfull \hbox (23.64pt too wide) in paragraph at lines 89--89
+ \TU/lmss/m/n/10 matik
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 89.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 89.
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 89--89
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (8211.99998pt too wide) in paragraph at lines 89--89
+[][] 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 89--89
+[] 
+ []
+
+! Undefined control sequence.
+<argument> ... {\textwidth }{2pt} \par \begin {center} \Huge 
+                                                  \textsf {\bfseries Web Pro...
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (20.8pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 Web 
+ []
+
+
+Overfull \hbox (19.92pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 Pro- 
+ []
+
+
+Overfull \hbox (26.81pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 gram- 
+ []
+
+
+Overfull \hbox (36.78pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 mierung 
+ []
+
+
+Overfull \hbox (15.26999pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 mit 
+ []
+
+
+Overfull \hbox (15.81pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 Re- 
+ []
+
+
+Overfull \hbox (14.18pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 act 
+ []
+
+
+Overfull \hbox (11.3pt too wide) in paragraph at lines 89--89
+ \TU/lmss/bx/n/10 JS 
+ []
+
+! Undefined control sequence.
+<argument> ...erung mit React JS} \par \vspace {20pt} \Large 
+                                                  Bachelorarbeit von N.~N. \...
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (8211.99998pt too wide) in paragraph at lines 89--89
+[][] 
+ []
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 89--89
+[] 
+ []
+
+! Undefined control sequence.
+<argument> ...pace {15pt} \begin {center} Aldenhoven, \today 
+                                                  \end {center} \par \end {t...
+l.89 }
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{titlepage}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+! Emergency stop.
+<*> titel.tex
+          
+*** (job aborted, no legal \end found)
+
+
+
+Here is how much of LuaTeX's memory you used:
+ 29 strings out of 477250
+ 100000,383344 words of node,token memory allocated 3914 words of node memory still in use:
+   59 hlist, 1 vlist, 2 rule, 18 disc, 11 local_par, 1 dir, 1 math, 175 glue, 10
+ kern, 40 penalty, 176 glyph, 48 attribute, 39 glue_spec, 48 attribute_list node
+s
+   avail lists: 1:1,2:3,3:1,4:3,5:10,7:1,8:1,10:2
+ 21391 multiletter control sequences out of 65536+600000
+ 26 fonts using 1038559 bytes
+ 21i,2n,19p,89b,170s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

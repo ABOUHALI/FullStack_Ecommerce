@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info=@Info(
+/*@OpenAPIDefinition(info=@Info(
 		title="Ecommerce Backend ",
 		description = "Diese API bietet eine Reihe von Endpunkten und Funktionen zur programmatischen Interaktion mit unserer eCommerce-Plattform",
 		version = "v1",
@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		license = @License(
 				name = "ayman abouhali"
 		)
-))
+))*/
 public class EcommerceApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {

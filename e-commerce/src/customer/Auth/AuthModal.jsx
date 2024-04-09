@@ -1,7 +1,8 @@
 import { Box, Modal, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormRegister from './FormRegister';
 import { useLocation } from 'react-router-dom';
+import {useSelector} from "react-redux";
 import FormLogin from './FormLogin';
 const style = {
   position: 'absolute',
@@ -16,6 +17,11 @@ const style = {
 };
 const AuthModal = ({handleClose,open}) => {
   const location=useLocation();
+  const {auth}=useSelector((store)=>store);
+  useEffect(()=>{
+    if(auth.user)handleClose();
+
+  },[auth.user])
   return (
     <div><Modal
     open={open}

@@ -1,0 +1,200 @@
+%23456789012345678901234567890123456789012345678901234567890123456789012
+\wlog{This is twp-cfg, the common configuration file all documents
+  (JHf)}
+
+% Einstellungen werden in LaTeX vor allen Dingen durch das Einbinden
+% von Paketen vorgenommen:
+% \usepackage[parameter]{package}
+
+\usepackage{iftex}              % Test des Formatierers, durch \if...
+                                % können Anpassungen an den Prozessor
+                                % vorgenommen werden
+\ifluatex                       % wenn mit dem neuen TeX-Prozessor,
+                                % der mehr Fontarten unterstützt,
+                                % gearbeitet wird:
+                                % - pk-Fonts (Pixelfonts, nicht
+                                %   skalierbar, alt)
+                                % - pfb-Fonts (Fonts, die durch Kurven
+                                %   beschrieben werden, skalierbar,
+                                %   entwickelt von Adobe->Acrobat
+                                %   Reader)
+                                % - otf/ttf-Fonts (Fonts, die durch
+                                %   Kurven beschrieben werden,
+                                %   skalierbar, entwickelt von Apple
+                                %   und Microsoft, um Adobe-Lizenzen
+                                %   zu sparen)
+  %---- Eingabezeichensatz --------------------------------------------
+                                % luatex unterstützt utf-8, also keine
+                                % Festlegung des Eingabezeichensatzes
+                                % erforderlich
+  %---- Grundfont -----------------------------------------------------
+  \usepackage{fontspec}         % Festlegen der Fontverwaltung für
+                                % LuaTeX.
+  \defaultfontfeatures{Renderer=Basic, Ligatures=TeX}
+  \fontspec{Latin Modern Roman}
+  %\setmonofont[Scale=0.85]{Luxi Mono Regular} % muss aktiviert werden,
+                                % falls das Paket installiert ist
+\else
+  %---- Eingabezeichensatz --------------------------------------------
+  \usepackage[utf8]{inputenc}   % Eingabe deutscher Umlaute
+                                % Unix/Linux: utf8
+                                % Unix/Linux: latin1 (alt)
+                                % Windows: cp1250
+  %---- Grundfont -----------------------------------------------------
+  \usepackage[T1]{fontenc}      % ec-Fonts
+  \usepackage{lmodern}          % wg. der lm-Fonts (keine bitmap-Fonts!)
+\fi
+
+%---- Sprachauswahl ---------------------------------------------------
+\usepackage{babel}              % um deutsche Bezeichnungen benutzen
+                                % zu können, es wird der Parameter aus
+                                % dem Kopf des Dokumentes benutzt.
+
+%---- Verwaltung der Bibliographie, muss nach babel geladen werden ----
+                                % Verwaltung der
+                                % Bibliographie durch
+\usepackage[backend=biber,      % Biber und biblatex
+            autolang=other,     % Trennung gemäß der mit
+                                % babel gesetzten Sprache
+            style=alphabetic,   % Verweise ähnlich zu
+                                % alpha.bst: XXX00
+            citestyle=alphabetic, % mehrere Titel eines
+                                % Autors werden XXX00a,
+                                % XXX00b, ... zitiert
+            giveninits=false,   % Vornamen werden nicht
+                                % abgekürzt
+            ]{biblatex}
+\usepackage[babel,german=quotes]{csquotes} % Titel werden
+                                % in deutsche Gänsefüßchen
+                                % gesetzt
+\addbibresource{../../shared/latex_course.bib}   % muss mit
+                                % .bib-Datenbanken gefüllt werden
+\ifluatex\else
+  %\usepackage{babelbib}         % fuer eine dazu passende Bibliographie,
+                                % luatex kennt seine eigene
+                                % Bibliographieverwaltung
+\fi
+\defbibheading{bibliography}[Literaturverzeichnis]{\chapter*{#1}}
+
+%---- Sonstiges ------------------------------------------------------
+% \PassOptionsToPackage{debugshow,final}{graphicx} % bei Bedarf zu
+                                % aktivieren
+\usepackage{graphicx}           % Vorbereitung der Graphiken
+% \graphicspath{{...}{...}}     % muss mit entsprechenden Pfaden
+                                % gefüllt werden, hier
+\graphicspath{%                 % weitere Pfade können nach dem
+  {../../shared/figures}%       % gleichen Muster hinzugefügt werden
+}
+\usepackage{listings}           % zur Darstellung von Code aller Art
+\lstset{                        % Einstellungen des listings-Paketes
+  language=tex,                 % es wird TeX\LaTeX-Code formatiert
+  %style=colored,                % der Hintergrund und spezielle Befehle
+                                % werden farbig dargestellt,
+  escapechar=@,                 % mit dem @-Zeichen gibt es die
+                                % Möglichkeit,
+                                % "ausgezeichneten" Text zu zeigen
+}
+%\usepackage{isodate}            % wg. \printdate{date}
+\usepackage{booktabs}           % wg. \toprule, ...
+                                % für typografisch korrekte Linien
+\usepackage{moreverb}           % zum Schreiben von Texten in externe
+                                % Dateien
+\usepackage{tikz}               % TikZ ist kein Zeichenprogramm
+\usetikzlibrary{trees}          % Produzieren von Baumstrukturen
+
+\usepackage{pgfplots}           % Darstellung von Funktionen
+\pgfplotsset{width=7cm,compat=1.18} % Standardbreite und Kompatibilitätslevel
+
+\usepackage{amsmath}            % für die einfachere Eingabe math. Gleichungen,
+                                % muss/sollte als Standard genutzt werden
+\usepackage{rotating}           % für die nicht horizontale Textausrichtung
+\usepackage{xspace}             % \wg. \xspace: fügt ein Leerzeichen an einen
+                                % Text an, außer der Text ist von einem
+                                % Punktuationszeichen gefolgt
+
+                                % die nächsten Pakete dienen der Einstellung
+                                % von Kopf- und Fußzeile
+\usepackage[useregional]{datetime2}  % das Paket zur Darstellung von Tag und
+                                % Uhrzeit in einem Format, das im deutschen
+                                % Sprachbereich üblich ist
+%\renewcommand{\dateseparator}{.}% das übliche Trennzeichen
+\newsavebox{\NameAndDate}       % Name und Datum werden nur einmal bestimmt
+                                % und dann zum späteren Gebrauch gespeichert
+\usepackage[headsepline, footsepline]{scrlayer-scrpage} % das ist das
+                                % eigentliche Paket, wir wollen Kopf- und
+                                % Fußzeile durch Linien abtrennen
+
+\pagestyle{scrheadings}         % das schaltet das neue Seitenlayout ein
+\setkomafont{pagehead}{\normalfont\bfseries} % die Kopfzeile fett
+\ifoot{\usebox{\NameAndDate}}   % Name und Datum innen auf der Seite
+\AtBeginDocument{%              % wenn \begin{document} erreicht wird,
+  \sbox{\NameAndDate}{%
+    \footnotesize\textsf{%
+      N.~N.: Meine eigene Probearbeit, \today--\DTMcurrenttime%
+    }
+  }
+}
+
+\usepackage{ifthen}             % zur Unterstützung logischer Bedingungen
+
+%---- Bezuege --------------------------------------------------------
+% gemäß der cleveref Dokumentation müssen diese Pakete als letzte
+% geladen werden
+\usepackage{varioref}           % Voraussetzung für cleveref
+\usepackage[ngerman]{cleveref}  % deutschsprachige Bezuege, nach babel
+                                % zu laden
+
+%---- Einstellungen ---------------------------------------------------
+\setcounter{secnumdepth}{7}     % Anzeige der Gliederungsstufen bis
+                                % hinunter auf Ebene 7
+\setcounter{tocdepth}{7}        % Inhaltsverzeichnis zeigt
+                                % Gliederungsstufen bis
+                                % hinunter auf Ebene 7, gebraucht wird
+                                % das höchstens für technische
+                                % Dokumentationen
+\newlength{\myWidth}            % universelle Längenangabe, die
+                                % jeweils passen gesetzt wird
+
+%---- Eigene Definitionen ---------------------------------------------
+\author{Jobst Hoffmann}
+\title{Ein erstes \LaTeX-Dokument mit der Dokumentklasse
+\texttt{scrartcl}}       % \texttt{<Inhalt>} formatiert <Inhalt>
+                         % mit einer dicktengleichen Schriftart
+
+% Hier werden nun eigene Befehle definiert, eine genaue Anleitung
+% zur Definition eigener Befehle folgt später:
+% \cs:    command sequence, das Argument wird als Befehl formatiert
+\NewDocumentCommand{\cs}{m}{\texttt{\char92#1}}
+% \farg:  fixed argument, das Argument wird als festes Argument eines
+%        Befehls formatiert
+\NewDocumentCommand{\farg}{m}
+{%
+  {\texttt{\{#1\}}}%
+}
+% \farg:  fixed optional argument, das Argument wird als optionales
+%         Argument eines Befehls formatiert
+\NewDocumentCommand{\foarg}{m}
+{%
+  {\texttt{[#1]}}%
+}
+% \marg:  mandatory argument, das Argument wird als verpflichtendes,
+%         aber frei zu wählendes Argument eines Befehls formatiert
+\NewDocumentCommand{\marg}{m}
+{%
+  {\texttt{\{}\(\langle\)\textit{#1}\(\rangle\)\texttt{\}}}%
+}
+% \meta:  das Argument wird als Beschreibung eines Objektes benutzt
+\NewDocumentCommand{\meta}{m}
+{%
+  {\ensuremath{\langle}\textit{#1}\ensuremath{\rangle}}%
+}
+% \oarg:  optional argument, das Argument wird als optionales,
+%         frei zu wählendes Argument eines Befehls formatiert
+\NewDocumentCommand{\oarg}{m}
+{%
+  {\texttt{[}\(\langle\)\textit{#1}\(\rangle\)\texttt{]}}%
+}
+% \Cee: der Buchstabe C als Name der Programmiersprache,
+%       \xspace sorgt dafür, dass das Kommando bei Bedarf
+%       mit einem Leerzeichen ergänzt wird
+\NewDocumentCommand{\Cee}{}{\textsc{C}\xspace}

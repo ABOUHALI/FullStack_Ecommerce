@@ -1,0 +1,191 @@
+% Trick: verhindere zweifaches Einlesen dieser Datei
+\csname SwitchCfgLoaded\endcsname   % Dies ist die Konstruktion des
+                                    % Befehls \SwitchCfgLoaded
+\let\SwitchCfgLoaded\endinput
+
+\typeout{This is switch-cfg.tex, the single source publishing configuration
+file}
+
+% boc: define flags
+% flags, die das Formatierungsziel beschreiben
+\newboolean{isBook}             % alle flags sind mit
+\newboolean{isArticle}          % false initialisiert
+\newboolean{isArticleTC}
+\newboolean{isReport}
+\newboolean{isPresentation}
+\newboolean{isPoster}
+\newboolean{useBeamerarticle}
+% eoc: define flags
+
+% boc: set flags
+% mache die folgenden Tests formatierbar
+\makeatletter                   % damit ist "@" ein Buchstabe,
+                                % ein Befehl darf nun ein "@"
+                                % enthalten!
+\@ifclassloaded{scrbook}{       % formatiere als Buch
+  \setboolean{isBook}{true}
+}{                              % formatiere nicht als Buch
+  \@ifclassloaded{scrreprt}{    % formatiere als Report
+    \setboolean{isReport}{true}
+  }{                            % formatiere nicht als Report
+    \@ifclassloaded{scrartcl}{  % formatiere als Artikel
+      \setboolean{isArticle}{true}
+      \@ifclasswith{scrartcl}{twocolumn}{ % zusätzlich:
+                                % zweispaltiger Artikel
+        \setboolean{isArticleTC}{true}
+      }{}                       % einspaltiger Artikel
+    }{                          % formatiere nicht als Artikel
+      \@ifclassloaded{beamer}{  % formatiere als Präsentation
+        \setboolean{isPresentation}{true}
+        \@ifpackageloaded{beamerposter}{ % zusätzlich:
+                                % formatiere als Poster
+          \setboolean{isPoster}{true}
+          \defbibheading{bibliography}[]{}
+        }{}
+      }{}                       % formatiere nicht als
+                                % Präsentation
+    }
+  }
+}
+\@ifpackageloaded{beamerarticle}{ % zusätzlich:
+  % benutze Paket zum Wegdefinieren vom beamer-Befehlen
+  \setboolean{useBeamerarticle}{true}
+}{}
+\makeatother    % @ darf nicht mehr in einem Befehl auftauchen
+% eoc: set flags
+
+% hier stehen Einstellungen, die für fast alle Dokumentklassen gebraucht
+% werden, Ausnahmen werden weiter unten definiert
+\def\sFactor{1.0}               % Variablen werden mittels des
+                                % Original-TeX-Kommandos
+                                % \def\<cmd-name>{} gesetzt.
+                                % \<cmd-name> gilt gruppenweit
+                                % und kann durch ein weiteres
+                                % \def einfach umgesetzt werden
+
+% boc: use flags
+% kombinierte Fälle werden hier abgehandelt, dadurch wird eine
+% tiefe Schachtelung vermieden
+\ifthenelse{\boolean{isArticleTC} \or \boolean{isPoster}}{
+  \usepackage{multicol}             % Um den Text nicht zu breit
+                                    % werden zu lassen, wird er
+                                    % in einer Umgebung
+                                    % "multicols" geschrieben,
+                                    % dies erzeugt zwei oder
+                                    % mehr Spalten
+  \setlength{\columnsep}{1em}       % Platz zwischen den Spalten
+  \setlength\columnseprule{0.1em}   % Es wird eine optische
+                                    % Trennung durch eine
+                                    % senkrechte Linie erzeugt.
+}{}
+\ifthenelse{\not \boolean{isPresentation}}{
+  \ifthenelse{\boolean{useBeamerarticle}}{ % für die Vorlesung ist dieser
+    \renewcommand{\frametitle}[1]{} % Befehl unbekannt, in den Projekten
+  }{                             % nicht (wg. beamerarticle)
+    \newcommand{\frametitle}[1]{}   % Deshalb muss hier mit
+  }                              % \newcommand{cmd}[args]{def}
+                                 % gearbeitet werden, in den
+                                 % Projekten mit
+                                 % \renewcommand{cmd}[args]{def}
+                                 % Allgemein kann das gelöst werden,
+                                 % indem getestet wird, ob ein Paket,
+                                 % das nur für die Vorlesung
+                                 % gebraucht wird, geladen ist
+}{}
+% eoc: use flags
+
+% boc: distinguish classes
+\ifthenelse{\boolean{isBook}}{
+  % dies ist der Standardfall, hier braucht nichts weiter
+  % gemacht zu werden
+}{
+  % kein Buch, deshalb: definiere Kommandos weg, die nicht
+  % in einem Buch auftreten können
+  %
+  % \let \Kommando \neuesKommando macht Folgendes:
+  % wenn der TeX-Compiler auf \Kommando trifft, wird statt dessen
+  % \neuesKommando ausgeführt
+  \let\frontmatter\relax    % \relax ist das "leere" Kommando, das
+                            % immer ohne Auswirkungen aufgerufen
+                            % werden kann
+  \let\mainmatter\relax
+  \let\backmatter\relax
+  \ifthenelse{\boolean{isReport}}{
+  }{
+    % kein Buch, kein Report => kein \chapter, also herunterstufen
+    % der Gliederungshierarchie, kann fast beliebig fortgesetzt
+    % werden...,
+    \let\chapter\section
+    \let\section\subsection
+    \let\subsection\subsubsection
+
+    \ifthenelse{\boolean{isArticle}}{
+      % ------- Beginn Spezialfall: 2-spaltiger Artikel ----------
+      \ifthenelse{\boolean{isArticleTC}}{
+        % hier müssten Faktoren auftreten, die Bilder auf
+        % \columnwidth skalieren
+      }{}
+      % ------- Ende Spezialfall 2-spaltiger Artikel -------------
+    }{
+      \ifthenelse{\boolean{isPresentation}}{
+        \AtBeginSubsection[]{%   Am Anfang einer \subsection wird
+                             %   eine eigene Folie generiert
+          \begin{frame}<beamer|handout>%
+              \begin{block}{}
+                  \insertsubsectionhead
+              \end{block}
+          \end{frame}
+        }
+
+        % ------- Beginn Spezialfall Poster ---------------------
+        \ifthenelse{\boolean{isPoster}}{
+
+          \def\sFactor{2.83}    % = \sqrt{2}^3,
+                                % wg. DIN A4 -> DIN A0/2
+
+          \renewcommand{\maketitle}{% Umdefinieren des bekannten
+                                % Kommandos:
+                                % \maketitle darf keine eigene Seite
+                                % erzeugen!
+            \begin{center}%
+                \LARGE\inserttitle\\% Zugriff auf die internen Daten
+                \normalsize\insertinstitute%
+            \end{center}%
+          }
+          \def\onslide<+->{}    % korrigiere \onslide-Fehler für
+                                % Poster
+        }{}
+        % ------- Ende Spezialfall Poster -----------------------
+
+      }{}
+    }
+  }
+}
+% eoc: distinguish classes
+
+\defbeamertemplate*{footline}{ACUAS theme}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.025\paperheight,
+      dp=0.005\paperheight]{palette primary}%
+      \begin{pgfpicture}
+          \pgfusepath{use as bounding box}
+          \pgfsetlinewidth{0.8pt}
+          \pgftransformshift{\pgfpointanchor{current page}{south west}}
+          \pgftransformshift{\pgfpoint{0.03\paperwidth}{0.05\paperheight}}
+          \pgfpathmoveto{\pgfpointorigin}
+          \pgfpathlineto{\pgfpoint{0.88\paperwidth}{0pt}}
+          \pgfusepath{stroke}
+          \pgfrememberpicturepositiononpagetrue
+      \end{pgfpicture}%
+      \usebeamerfont{author}%
+      \hspace{0.03\paperwidth}%
+      \hbox to 0pt{%
+        \copyright{} \jhfb@published{}~%
+        \insertshortauthor
+        -- \insertshorttitle{} -- \today{}%
+      }%
+      \hspace{\fill}%
+      \insertframenumber
+      \hbox to 0.09\paperwidth{}%
+  \end{beamercolorbox}%
+  \vskip5pt%
+}

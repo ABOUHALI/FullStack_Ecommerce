@@ -33,6 +33,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartItem addCartItem(Long userId, CartItemRequest cartItemRequest) throws ProductException {
         Cart cart = cartRepository.findCartByUserId(userId);
+        //System.out.println(cart.toString());
         Product product = productService.findProductById(cartItemRequest.getProductId());
         CartItem cartItem = cartItemService.isCartItemExist(cart,product,cartItemRequest.getSize(),userId);
 
@@ -60,15 +61,22 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart findUserCart(Long userId) {
+        //System.out.println("findUser"+userId);
         Cart cart = cartRepository.findCartByUserId(userId);
+        if (cart == null) {
+
+            return null;
+        }
         //calculating total price and total item and total discounted price
         int finalPrice =0;
         int finalDiscountedPrice=0;
         int finalItemnbr=0;
-        for (CartItem ci:cart.getCartItems()) {
-            finalPrice+=ci.getPrice();
-            finalDiscountedPrice+=ci.getDiscountedPrice();
-            finalItemnbr+=ci.getQuantity();
+        if(cart.getCartItems()!=null) {
+            for (CartItem ci : cart.getCartItems()) {
+                finalPrice += ci.getPrice();
+                finalDiscountedPrice += ci.getDiscountedPrice();
+                finalItemnbr += ci.getQuantity();
+            }
         }
         cart.setTotalItem(finalItemnbr);
         cart.setTotalPrice(finalPrice);

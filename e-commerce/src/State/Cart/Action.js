@@ -18,7 +18,7 @@ export const removeCartItem=(cartItemId)=>async (dispatch)=>{
         dispatch({type:REMOVE_CART_ITEM_REQUEST})
         
         const {data}=await api.delete(`api/cartItem/${cartItemId}`)
-        dispatch({type:REMOVE_CART_ITEM_SUCCESS,payload:data})
+        dispatch({type:REMOVE_CART_ITEM_SUCCESS,payload:cartItemId})
     } catch (error) {
         dispatch({type:REMOVE_CART_ITEM_FAILURE,payload:error.message})
     } 
@@ -38,11 +38,13 @@ export const updateCartItem=(reqData)=>async (dispatch)=>{
     } 
 }
 
-export const getCart=(jwt)=>async (dispatch)=>{
+export const getCart=()=>async (dispatch)=>{
     dispatch({type:GET_CART_REQUEST})
     try {
        
         const {data}=await api.get(`api/cart/`)
+        console.log("cart ",data)
+
         dispatch({type:GET_CART_SUCCESS,payload:data})
     } catch (error) {
         dispatch({type:GET_CART_FAILURE,payload:error.message})

@@ -1,0 +1,31 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{\numberline {1}Projektbeschreibung}{1}{}%
+\contentsline {section}{\numberline {1.1}Funktionale Spezifikation}{1}{}%
+\contentsline {section}{\numberline {1.2}Non-Functional Specification}{2}{}%
+\contentsline {chapter}{\numberline {2}die Konzeption von Klassendiagrammen und API}{3}{}%
+\contentsline {section}{\numberline {2.1}Klassendiagramm der Anwendung}{3}{}%
+\contentsline {section}{\numberline {2.2}API-Dokumentation mit Swagger}{4}{}%
+\contentsline {chapter}{\numberline {3}Verwendete Technologien}{7}{}%
+\contentsline {section}{\numberline {3.1}Backend-Entwicklung}{7}{}%
+\contentsline {subsection}{\numberline {3.1.1}Java(Version 17.0.6 )}{7}{}%
+\contentsline {subsection}{\numberline {3.1.2}Spring Framework}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}Spring Boot (Version 3.2.2)}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}Spring Data (Version 3.2.2.)}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}Spring Web und Spring REST (Version 3.2.2)}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.4}Spring Security (Version 6.2.1)}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.5}Spring Validator (Version 3.0.2)}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.6}Spring Devtools (Version 2.5.4)}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.7}Lombok (Version 1.18.20)}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.8}Stripe (Version 20.62.0)}{8}{}%
+\contentsline {section}{\numberline {3.2}Front-End Entwicklung}{8}{}%
+\contentsline {subsection}{\numberline {3.2.1}React.js (Version 18.2.0)}{8}{}%
+\contentsline {subsection}{\numberline {3.2.2}Redux (5.0.1)}{8}{}%
+\contentsline {subsection}{\numberline {3.2.3}MUI : Material-UI (Version 5.15.6)}{8}{}%
+\contentsline {subsection}{\numberline {3.2.4}Tailwind CSS (Version 3.4.1)}{9}{}%
+\contentsline {subsection}{\numberline {3.2.5}JavaScript / HTML / CSS / SCSS}{9}{}%
+\contentsline {section}{\numberline {3.3}Datenbank-Management}{9}{}%
+\contentsline {subsection}{\numberline {3.3.1}MySQL}{9}{}%
+\contentsline {section}{\numberline {3.4}Weiter Technologien}{9}{}%
+\contentsline {subsection}{\numberline {3.4.1}Git}{9}{}%
+\contentsline {subsection}{\numberline {3.4.2}IDEs (Integrierte Entwicklungsumgebungen)}{9}{}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

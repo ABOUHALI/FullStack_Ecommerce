@@ -14,22 +14,18 @@ import CustomerRouter from './Routers/CustomerRouter';
 import AdminRouters from './Routers/AdminRouters';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getUser } from './State/Auth/Action';
 
 function App() {
   const {auth}=useSelector((store)=>store);
   const dispatch=useDispatch();
   const jwt =localStorage.getItem("jwt");
-  useEffect(()=>{
-    if(jwt){dispatch(getUser(jwt))}
-    
-  },[jwt,dispatch])
+ 
   return (
     <div className="">
 
       <Routes>
         <Route path='/*' element={<CustomerRouter/>}/>
-        {auth.user?.role==="ADMIN"&& <Route path='/admin/*' element={<AdminRouters/>}></Route>}
+        <Route path='/admin/*' element={<AdminRouters/>}></Route>
       </Routes>
       
       

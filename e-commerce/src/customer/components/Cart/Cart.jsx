@@ -4,30 +4,33 @@ import { Button, Divider } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCart } from '../../../State/Cart/Action'
-import { store } from '../../../State/store'
-import { getUser } from '../../../State/Auth/Action'
 
 const Cart = () => {
 
     const navigate=useNavigate();
     const dispatch=useDispatch()
-    const {auth,cart}=useSelector(store=>store)
-    const jwt =localStorage.getItem("jwt")
+    const {cart}=useSelector(store=>store);
+    const jwt =localStorage.getItem("jwt");
+    console.log("cart ",cart);
+
     const checkout=()=>{
         navigate("/checkout?step=2")
     }
 
     useEffect(()=>{
         
-        dispatch(getCart(jwt))
-    },[jwt,cart.updatedCartItem,cart.removedCartItem])
+            console.log("cart")
+            //dispatch(getUser())
+            dispatch(getCart())
+        
+    },[ jwt,cart.updatedCartItem, cart.removedCartItem, dispatch])
 
 
   return (
     <div>
         <div className='lg:grid grid-cols-3 lg:px-16 relative'>
             <div className='col-span-2'>
-                {cart.cart?.cartItems.map((item)=><CartItem item={item}/>)}
+                {cart?.cart?.cartItems.map((item)=><CartItem item={item}/>)}
             </div>
 
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 '>
