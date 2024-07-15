@@ -33,7 +33,7 @@ export default function AddDeliveryAddressForm() {
     dispatch(createOrder({ address,  navigate }));
     // after perfoming all the opration
   };
-
+  console.log("delivery",auth.user)
   const handleCreateOrder = (item) => {
     const newData={...item};
     delete newData.id;

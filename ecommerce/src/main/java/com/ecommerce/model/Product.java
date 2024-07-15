@@ -22,8 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
+@Data@NoArgsConstructor
 @AllArgsConstructor
 public class Product {
 

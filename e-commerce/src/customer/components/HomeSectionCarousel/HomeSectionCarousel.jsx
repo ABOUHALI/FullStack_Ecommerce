@@ -4,7 +4,7 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Button } from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-const HomeSectionCarousel = ({data,sectionName}) => {
+const HomeSectionCarousel = ({data,sectionName,navig}) => {
     const [activeIndex,setActiveIndex]=useState(0);
   const responsive = {
     0: { items: 1 },
@@ -21,7 +21,7 @@ const HomeSectionCarousel = ({data,sectionName}) => {
     console.log("sync");
     setActiveIndex(item)}
 
-  const items = data.slice(0,10).map((item) => <HomeSectionCard product={item} section={`/men/clothing/mens_tshirt`}/>);
+  const items = data.slice(0,10).map((item) => <HomeSectionCard product={item} section={navig}/>);
   return (
     <div className="border">
         <h2 className="text-2xl font-extrabold text-gray-800 py-5">{sectionName}</h2>

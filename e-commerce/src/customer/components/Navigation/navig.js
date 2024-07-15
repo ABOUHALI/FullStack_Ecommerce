@@ -84,7 +84,7 @@ export const navigation = {
             items: [
               { name: 'Mens Tshirt', id: 'mens_tshirt' },
               { name: 'Hoodies', id: 'mens_hoodies' },
-              { name: 'Men Jeans', id: 'men_jeans' },
+              { name: 'Men Jeans', id: 'mens_jeans' },
               { name: 'Sweaters', id: '#' },
               { name: 'T-Shirts', id: 't-shirt' },
               { name: 'Jackets', id: '#' },

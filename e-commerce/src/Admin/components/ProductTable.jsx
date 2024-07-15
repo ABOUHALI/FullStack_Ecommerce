@@ -97,12 +97,13 @@ const ProductTable = () => {
                 onChange={(e) => handleFilterChange(e, "category")}
               >
                 <MenuItem value={"mens_tshirt"}>Men's T-shirt</MenuItem>
-                <MenuItem value={"sneaker"}>Sneaker</MenuItem>
-                <MenuItem value={"accessories"}>Accessories</MenuItem>
-                <MenuItem value={"jeans"}>Jeans</MenuItem>
+                <MenuItem value={"mens_hoodies"}>Men's Hoodies</MenuItem>
+                <MenuItem value={"mens_jeans"}>Jeans</MenuItem>
+                <MenuItem value={"schuhe"}>schuhe</MenuItem>
+                
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> 
         </Grid>
         <Grid item xs={4}>
           <FormControl fullWidth>

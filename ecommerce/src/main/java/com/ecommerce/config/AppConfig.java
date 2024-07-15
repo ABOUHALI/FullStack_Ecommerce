@@ -42,8 +42,8 @@ public class AppConfig {
                         cfg.setAllowedOrigins(Arrays.asList(
 
                                         "http://localhost:3000",
-                                        "http://localhost:4000",
-                                        "http://localhost:4200")
+                                        "https://ecommerce-ayman.vercel.app"
+                                        )
                         );
                         //cfg.setAllowedMethods(Arrays.asList("GET", "POST","DELETE","PUT"));
                         cfg.setAllowedMethods(Collections.singletonList("*"));

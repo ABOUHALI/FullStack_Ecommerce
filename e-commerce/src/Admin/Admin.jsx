@@ -12,6 +12,7 @@ import ProductTable from './components/ProductTable';
 import OrdersTable from './components/OrdersTable';
 import CustomersTable from './components/CustomersTable';
 import AdminDashboard from './components/Dashboard';
+import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
 const menu=[
     {name:"Dashboard",path:"/admin",icon:<DashboardIcon/>},
     {name:"Products",path:"/admin/products",icon:<DashboardIcon/>},
@@ -24,8 +25,7 @@ const menu=[
 
 const Admin = () => {
   const theme=useTheme();
-  const isLargeScreen=useMediaQuery(theme.breakpoints.up("lg"));
-  const [sideBarVisible,setSideBarVisible]=useState(false);
+  
   const navigate=useNavigate();
   const drawer=(
     <Box
@@ -53,7 +53,14 @@ const Admin = () => {
         </List>
         </>
         <List>
-            
+                <ListItem  disablePadding >
+                <ListItemButton onClick={()=>navigate('/')}>
+                    <ListItemIcon>
+                        <HolidayVillageIcon/>
+                    </ListItemIcon>
+                    <ListItemText>Back HOME</ListItemText>
+                </ListItemButton>
+            </ListItem>
             <ListItem  disablePadding >
                 <ListItemButton>
                     <ListItemIcon>
