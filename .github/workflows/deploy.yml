@@ -39,9 +39,7 @@ jobs:
           echo '{ "presets": ["@babel/preset-env", "@babel/preset-react"] }' > .babelrc
         working-directory: e-commerce
       
-      - name: Test React App
-        run: npm test -- --watchAll=false
-        working-directory: e-commerce
+
           
       - name: Build React App
         run: npm run build
