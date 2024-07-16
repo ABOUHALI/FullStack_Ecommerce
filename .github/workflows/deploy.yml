@@ -20,6 +20,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      # List repository structure for debugging
+      - name: List repository structure
+        run: ls -R
+
       # Frontend build and test
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -28,15 +32,15 @@ jobs:
 
       - name: Install Npm Packages
         run: npm install
-        working-directory: frontend
+        working-directory: e-commerce
         
       - name: Test React App
         run: npm test -- --watchAll=false
-        working-directory: frontend
+        working-directory: e-commerce
           
       - name: Build React App
         run: npm run build
-        working-directory: frontend
+        working-directory: e-commerce
 
       # Backend build and test
       - name: Set up JDK 17
@@ -46,8 +50,8 @@ jobs:
           
       - name: Install and Build Backend
         run: mvn clean install
-        working-directory: backend
+        working-directory: ecommerce
 
       - name: Test Backend
         run: mvn test
-        working-directory: backend
+        working-directory: ecommerce
