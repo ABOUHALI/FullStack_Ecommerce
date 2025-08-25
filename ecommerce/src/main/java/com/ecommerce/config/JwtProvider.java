@@ -23,11 +23,13 @@ public class JwtProvider {
     private SecretKey key=Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
     public String generateToken(Authentication auth) {
+        String authorities = populateAuthorities(auth.getAuthorities());
 
         String jwt=Jwts.builder()
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime()+86400000))
                 .claim("email",auth.getName())
+                .claim("authorities", authorities)
                 .signWith(key)
                 .compact();
 

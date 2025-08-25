@@ -27,6 +27,7 @@ public class AppConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests(Authorize -> Authorize
+                        .requestMatchers("/api/auth/**").permitAll()  // ✅ allow unauthenticated signup/signin
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
                 )
